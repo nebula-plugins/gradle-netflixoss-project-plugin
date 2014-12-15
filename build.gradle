@@ -1,0 +1,54 @@
+/*
+ * Copyright 2014 Netflix, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+plugins {
+    id 'nebula.nebula-plugin' version '2.0.1'
+    id 'idea'
+}
+
+description 'Template for NetflixOSS projects'
+
+contacts {
+    'rob.spieldenner@gmail.com' {
+        moniker 'Rob Spieldenner'
+        github 'rspieldenner'
+    }
+    'justin@halfempty.org' {
+        moniker 'Justin Ryan'
+        github 'quidryan'
+    }
+}
+
+dependencies {
+    compile "com.netflix.nebula:gradle-contacts-plugin:${pluginGradleVersion}.+"
+    compile "com.netflix.nebula:gradle-dependency-lock-plugin:${pluginGradleVersion}.+"
+    compile "com.netflix.nebula:gradle-info-plugin:${pluginGradleVersion}.+"
+
+    compile "com.netflix.nebula:nebula-bintray-plugin:${pluginGradleVersion}.+"
+    compile "com.netflix.nebula:nebula-core:${pluginGradleVersion}.+"
+    compile "com.netflix.nebula:nebula-project-plugin:${pluginGradleVersion}.+"
+    compile "com.netflix.nebula:nebula-publishing-plugin:${pluginGradleVersion}.+"
+    compile 'com.netflix.nebula:nebula-release-plugin:2.2.+'
+    compile 'nl.javadude.gradle.plugins:license-gradle-plugin:0.+'
+    testCompile("com.netflix.nebula:nebula-test:${pluginGradleVersion}.+") {
+        exclude group: 'org.codehaus.groovy', module: 'groovy-all'
+    }
+}
+
+test {
+    minHeapSize = '128m'
+    maxHeapSize = '512m'
+    jvmArgs '-XX:MaxPermSize=256m'
+}
