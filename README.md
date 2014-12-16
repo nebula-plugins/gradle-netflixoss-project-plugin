@@ -19,6 +19,7 @@ provides consistency across many projects, e.g. in a Github org or an enterprise
 
 For reference, these are Gradle-related modules used:
 
+  * com.netflix.nebula:gradle-dependency-lock-plugin - allow project to declare their ideal state of dependencies and lock them to specific versions for releases.
   * com.netflix.nebula:nebula-project-plugin
   * com.netflix.nebula:nebula-bintray-plugin - wraps gradle-bintray-plugin with different defaults and adding OJO support and multi-module support.
   * com.netflix.nebula:nebula-publishing-plugin - for producing a jar, source jar, javadoc jar with metadata about how it was produced.
@@ -56,3 +57,7 @@ By default the license check is on. To turn it off:
     license {
         ignoreFailures = true
     }
+
+# Release Task Information and Configuration
+
+see [nebula-release-plugin](https://github.com/nebula-plugins/nebula-release-plugin)
