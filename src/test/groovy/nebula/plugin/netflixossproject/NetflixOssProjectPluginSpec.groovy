@@ -74,6 +74,18 @@ class NetflixOssProjectPluginSpec extends PluginProjectSpec {
         project.targetCompatibility == JavaVersion.VERSION_1_6
     }
 
+    def 'plugin allows changing java version via sourceCompatibility only'() {
+        project.plugins.apply(NetflixOssProjectPlugin)
+        project.plugins.apply(JavaPlugin)
+
+        when:
+        project.sourceCompatibility = '1.8'
+
+        then:
+        project.sourceCompatibility == JavaVersion.VERSION_1_8
+        project.targetCompatibility == JavaVersion.VERSION_1_8
+    }
+
     def 'plugin sets default group'() {
         when:
         project.plugins.apply NetflixOssProjectPlugin
