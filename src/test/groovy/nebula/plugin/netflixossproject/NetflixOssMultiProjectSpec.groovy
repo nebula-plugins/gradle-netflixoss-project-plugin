@@ -23,6 +23,7 @@ import nebula.plugin.publishing.NebulaJavadocJarPlugin
 import nebula.plugin.publishing.NebulaPublishingPlugin
 import nebula.plugin.publishing.NebulaSourceJarPlugin
 import nebula.test.ProjectSpec
+import org.ajoberstar.grgit.Grgit
 import org.gradle.api.Project
 import org.gradle.plugins.ide.eclipse.EclipsePlugin
 import org.gradle.plugins.ide.idea.IdeaPlugin
@@ -32,6 +33,7 @@ class NetflixOssMultiProjectSpec extends ProjectSpec {
     Project sub2
 
     def setup() {
+        Grgit.init(dir: projectDir)
         sub1 = addSubproject('sub1')
         sub2 = addSubproject('sub2')
     }

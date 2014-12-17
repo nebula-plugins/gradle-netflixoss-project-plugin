@@ -20,10 +20,12 @@ import nebula.core.ProjectType
 import nebula.plugin.contacts.ContactsPlugin
 import nebula.plugin.dependencylock.DependencyLockPlugin
 import nebula.plugin.info.InfoPlugin
+import nebula.plugin.netflixossproject.license.OssLicensePlugin
 import nebula.plugin.netflixossproject.publishing.PublishingPlugin
 import nebula.plugin.publishing.NebulaJavadocJarPlugin
 import nebula.plugin.publishing.NebulaPublishingPlugin
 import nebula.plugin.publishing.NebulaSourceJarPlugin
+import nebula.plugin.release.ReleasePlugin
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -43,7 +45,12 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
 
         if (type.isLeafProject || type.isRootProject) {
             project.plugins.apply PublishingPlugin
+            project.plugins.apply ReleasePlugin
             project.plugins.apply DependencyLockPlugin
+        }
+
+        if (type.isRootProject) {
+            project.tasks.release.dependsOn project.tasks.bintrayUpload
         }
 
         if (type.isLeafProject) {
@@ -66,6 +73,7 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             }
         }
 
+        project.plugins.apply OssLicensePlugin
         project.plugins.apply InfoPlugin
         project.plugins.apply IdeaPlugin
         project.plugins.apply EclipsePlugin
