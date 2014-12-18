@@ -33,7 +33,6 @@ import org.gradle.api.publish.maven.MavenPublication
  * Leverage license plugin to show missing headers, and inject license into the POM
  */
 class OssLicensePlugin  implements Plugin<Project> {
-
     Project project
     File header
 
@@ -101,7 +100,6 @@ class OssLicensePlugin  implements Plugin<Project> {
                 })
             }
         }
-
     }
 
     File defineHeaderFile() {
@@ -111,8 +109,10 @@ class OssLicensePlugin  implements Plugin<Project> {
     }
 
     def copyHeaderFile() {
-        this.class.getResourceAsStream('/netflixoss/HEADER').withStream {
-            header.text = it.text
+        this.class.classLoader.getResourceAsStream('netflixoss/HEADER').withStream { input ->
+            header.withOutputStream { out ->
+                out << input
+            }
         }
     }
 }

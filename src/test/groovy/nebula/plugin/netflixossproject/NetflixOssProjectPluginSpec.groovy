@@ -18,10 +18,12 @@ package nebula.plugin.netflixossproject
 import nebula.plugin.contacts.ContactsPlugin
 import nebula.plugin.dependencylock.DependencyLockPlugin
 import nebula.plugin.info.InfoPlugin
+import nebula.plugin.netflixossproject.license.OssLicensePlugin
 import nebula.plugin.publishing.NebulaJavadocJarPlugin
 import nebula.plugin.publishing.NebulaPublishingPlugin
 import nebula.plugin.publishing.NebulaSourceJarPlugin
 import nebula.test.PluginProjectSpec
+import org.ajoberstar.grgit.Grgit
 import org.gradle.api.JavaVersion
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.plugins.ide.eclipse.EclipsePlugin
@@ -29,7 +31,11 @@ import org.gradle.plugins.ide.idea.IdeaPlugin
 import spock.lang.Unroll
 
 class NetflixOssProjectPluginSpec extends PluginProjectSpec {
-    String pluginName = 'netflixoss-project'
+    String pluginName = 'netflixoss'
+
+    def setup() {
+        Grgit.init(dir: projectDir)
+    }
 
     @Unroll
     def 'plugin adds #plugin successfully to a simple project'() {
@@ -46,6 +52,7 @@ class NetflixOssProjectPluginSpec extends PluginProjectSpec {
         InfoPlugin | _
         ContactsPlugin | _
         DependencyLockPlugin | _
+        OssLicensePlugin | _
         EclipsePlugin | _
         IdeaPlugin | _
     }

@@ -21,6 +21,8 @@ import nebula.plugin.bintray.BintrayPlugin
 import nebula.plugin.info.scm.ScmInfoExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.BasePlugin
+import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.tasks.Upload
 import org.jfrog.gradle.plugin.artifactory.task.BuildInfoBaseTask
 
@@ -38,7 +40,6 @@ class PublishingPlugin implements Plugin<Project> {
 
         project.plugins.apply BintrayPlugin
 
-
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
         bintray.pkg.with {
             it.repo = 'maven'
@@ -48,8 +49,8 @@ class PublishingPlugin implements Plugin<Project> {
         }
 
         BintrayUploadTask bintrayUpload = (BintrayUploadTask) project.tasks.find { it instanceof BintrayUploadTask }
-        bintrayUpload.doFirst {
 
+        bintrayUpload.doFirst {
             ScmInfoExtension scmInfo = project.extensions.findByType(ScmInfoExtension)
             // We have to change the task directly, since they already copied from the extension in an afterEvaluate
 
@@ -62,6 +63,10 @@ class PublishingPlugin implements Plugin<Project> {
                 bintrayUpload.packageIssueTrackerUrl = "${url}/issues"
                 bintrayUpload.packageVcsUrl = "${url}.git"
             }
+        }
+
+        project.plugins.withType(JavaBasePlugin) {
+            bintrayUpload.mustRunAfter project.tasks.build
         }
     }
 

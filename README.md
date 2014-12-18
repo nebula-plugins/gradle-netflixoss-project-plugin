@@ -29,6 +29,8 @@ For reference, these are Gradle-related modules used:
 
 # Applying the Plugin
 
+This plugin was tested with Gradle 2.2.1
+
 To include, add the following to your build.gradle
 
 If using gradle 2.1 or newer:
