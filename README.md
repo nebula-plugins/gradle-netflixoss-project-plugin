@@ -36,14 +36,14 @@ To include, add the following to your build.gradle
 If using gradle 2.1 or newer:
 
     plugins {
-      id 'nebula.netflixoss' version '2.2.0'
+      id 'nebula.netflixoss' version '2.2.1'
     }
 
 -or-
 
     buildscript {
       repositories { jcenter() }
-      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:2.2.0' }
+      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:2.2.1' }
     }
 
     allprojects {
@@ -63,3 +63,5 @@ By default the license check is on. To turn it off:
 # Release Task Information and Configuration
 
 see [nebula-release-plugin](https://github.com/nebula-plugins/nebula-release-plugin)
+
+We disable the devSnapshot task since we release to oss.jfrog.org with maven style -SNAPSHOT versions.

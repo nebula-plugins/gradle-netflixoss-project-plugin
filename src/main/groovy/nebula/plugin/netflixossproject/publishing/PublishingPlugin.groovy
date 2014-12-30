@@ -21,7 +21,6 @@ import nebula.plugin.bintray.BintrayPlugin
 import nebula.plugin.info.scm.ScmInfoExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.BasePlugin
 import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.tasks.Upload
 import org.jfrog.gradle.plugin.artifactory.task.BuildInfoBaseTask
@@ -39,6 +38,9 @@ class PublishingPlugin implements Plugin<Project> {
         project.tasks.withType(BuildInfoBaseTask, disable)
 
         project.plugins.apply BintrayPlugin
+
+        project.tasks.getByName('verifyReleaseStatus').actions.clear()
+        project.tasks.getByName('verifySnapshotStatus').actions.clear()
 
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
         bintray.pkg.with {

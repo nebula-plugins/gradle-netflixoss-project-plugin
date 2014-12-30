@@ -25,10 +25,15 @@ import nebula.plugin.netflixossproject.publishing.PublishingPlugin
 import nebula.plugin.publishing.NebulaJavadocJarPlugin
 import nebula.plugin.publishing.NebulaPublishingPlugin
 import nebula.plugin.publishing.NebulaSourceJarPlugin
+import nebula.plugin.release.NetflixOssStrategies
 import nebula.plugin.release.ReleasePlugin
+import org.ajoberstar.gradle.git.release.base.ReleasePluginExtension
+import org.gradle.api.GradleException
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.Task
+import org.gradle.api.execution.TaskExecutionGraph
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.api.tasks.javadoc.Javadoc
@@ -46,11 +51,40 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
         if (type.isLeafProject || type.isRootProject) {
             project.plugins.apply PublishingPlugin
             project.plugins.apply ReleasePlugin
+            ReleasePluginExtension releaseExtension = project.extensions.findByType(ReleasePluginExtension)
+            releaseExtension.with {
+                defaultVersionStrategy = NetflixOssStrategies.SNAPSHOT
+            }
             project.plugins.apply DependencyLockPlugin
         }
 
         if (type.isRootProject) {
-            project.tasks.release.dependsOn project.tasks.bintrayUpload
+            project.tasks.matching { it.name == 'bintrayUpload' || it.name == 'artifactoryPublish'}.all { Task task ->
+                task.mustRunAfter('build')
+                project.rootProject.tasks.release.dependsOn(task)
+            }
+
+            project.tasks.matching { it.name == 'bintrayUpload' }.all { Task task ->
+                project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
+                    task.onlyIf {
+                        graph.hasTask(':final') || graph.hasTask(':candidate')
+                    }
+                }
+            }
+
+            project.tasks.matching { it.name == 'artifactoryPublish'}.all { Task task ->
+                project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
+                    task.onlyIf {
+                        graph.hasTask(':snapshot')
+                    }
+                }
+            }
+
+            project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
+                if (graph.hasTask(':devSnapshot')) {
+                    throw new GradleException('You cannot use the devSnapshot task from the release plugin. Please use the snapshot task.')
+                }
+            }
         }
 
         if (type.isLeafProject) {
@@ -65,10 +99,8 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             }
 
             project.tasks.withType(Javadoc) {
-                options {
-                    if (JavaVersion.current().isJava8Compatible()) {
-                        options.addStringOption('Xdoclint:none', '-quiet')
-                    }
+                if (JavaVersion.current().isJava8Compatible()) {
+                    options.addStringOption('Xdoclint:none', '-quiet')
                 }
             }
         }
