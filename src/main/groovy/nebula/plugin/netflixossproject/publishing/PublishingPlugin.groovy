@@ -38,6 +38,7 @@ class PublishingPlugin implements Plugin<Project> {
         project.tasks.withType(BuildInfoBaseTask, disable)
 
         project.plugins.apply BintrayPlugin
+        project.plugins.apply org.gradle.api.publish.plugins.PublishingPlugin
 
         project.tasks.getByName('verifyReleaseStatus').actions.clear()
         project.tasks.getByName('verifySnapshotStatus').actions.clear()

@@ -20,12 +20,13 @@ provides consistency across many projects, e.g. in a Github org or an enterprise
 For reference, these are Gradle-related modules used:
 
   * com.netflix.nebula:gradle-dependency-lock-plugin - allow project to declare their ideal state of dependencies and lock them to specific versions for releases.
+  * com.netflix.nebula:gradle-contacts-plugin - to add developers to publications
   * com.netflix.nebula:nebula-project-plugin
   * com.netflix.nebula:nebula-bintray-plugin - wraps gradle-bintray-plugin with different defaults and adding OJO support and multi-module support.
   * com.netflix.nebula:nebula-publishing-plugin - for producing a jar, source jar, javadoc jar with metadata about how it was produced.
-  * nl.javadude.gradle.plugins:license-gradle-plugin - for license recommendations
   * com.netflix.nebula:nebula-release-plugin - for providing release tasks, versioning, and tagging
   * com.netflix.nebula:nebula-test - for Gradle integration tests.
+  * nl.javadude.gradle.plugins:license-gradle-plugin - for license recommendations
 
 # Applying the Plugin
 
@@ -48,6 +49,21 @@ If using gradle 2.1 or newer:
 
     allprojects {
         apply plugin: 'nebula.netflixoss'
+    }
+
+# Defaults
+
+These are some of the defaults that are set.
+
+* sourceCompatibility 1.7: Please change if you want to publish to older or newer java versions
+* a placeholder developer is added to the contacts section: to add more see [gradle-contacts-plugin](https://github.com/nebula-plugins/gradle-contacts-plugin)
+
+
+    contacts {
+      'myemail@sample.org' {
+        github '<githubid>'
+        moniker 'First Last'
+      }
     }
 
 # Variants

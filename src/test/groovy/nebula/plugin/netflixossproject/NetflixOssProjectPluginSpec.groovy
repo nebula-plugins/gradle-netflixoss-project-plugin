@@ -15,6 +15,7 @@
  */
 package nebula.plugin.netflixossproject
 
+import nebula.plugin.contacts.BaseContactsPlugin
 import nebula.plugin.contacts.ContactsPlugin
 import nebula.plugin.dependencylock.DependencyLockPlugin
 import nebula.plugin.info.InfoPlugin
@@ -119,5 +120,15 @@ class NetflixOssProjectPluginSpec extends PluginProjectSpec {
 
         then:
         project.group == 'after.netflix'
+    }
+
+    def 'stock developer in place'() {
+        when:
+        project.plugins.apply NetflixOssProjectPlugin
+
+        then:
+        def people = project.plugins.getPlugin(BaseContactsPlugin).extension.people
+        people.size() == 1
+        people.values().any { it.email == 'talent@netflix.com' }
     }
 }

@@ -1,3 +1,10 @@
+2.2.2 / 2015-01-02
+==================
+
+* Fix some issues with multiprojects
+* Added a default developer to the contacts section
+* Added some sanity integration tests
+
 2.2.1 / 2014-12-30
 ==================
 

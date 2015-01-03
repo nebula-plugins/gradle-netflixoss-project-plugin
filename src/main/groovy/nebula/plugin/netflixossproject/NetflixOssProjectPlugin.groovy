@@ -17,6 +17,7 @@ package nebula.plugin.netflixossproject
 
 import nebula.core.GradleHelper
 import nebula.core.ProjectType
+import nebula.plugin.contacts.ContactsExtension
 import nebula.plugin.contacts.ContactsPlugin
 import nebula.plugin.dependencylock.DependencyLockPlugin
 import nebula.plugin.info.InfoPlugin
@@ -101,6 +102,16 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             project.tasks.withType(Javadoc) {
                 if (JavaVersion.current().isJava8Compatible()) {
                     options.addStringOption('Xdoclint:none', '-quiet')
+                }
+            }
+        }
+
+        project.plugins.apply ContactsPlugin
+        if (type.isRootProject) {
+            project.contacts {
+                'talent@netflix.com' {
+                    github 'netflixgithub'
+                    moniker 'Netflix Open Source Development'
                 }
             }
         }
