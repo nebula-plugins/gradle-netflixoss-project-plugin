@@ -1,3 +1,8 @@
+2.2.3 / 2015-01-08
+==================
+
+* Update nebula-publishing-plugin to fix an issue with publishing war projects in a multiproject.
+
 2.2.2 / 2015-01-02
 ==================
 
