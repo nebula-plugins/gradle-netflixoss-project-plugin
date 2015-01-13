@@ -1,3 +1,8 @@
+2.2.4 / 2015-01-13
+==================
+
+* Fix bintray snapshot publishing for multiprojects
+
 2.2.3 / 2015-01-08
 ==================
 

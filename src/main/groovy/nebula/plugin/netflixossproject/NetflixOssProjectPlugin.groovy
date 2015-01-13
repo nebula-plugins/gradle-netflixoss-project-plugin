@@ -59,28 +59,28 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             project.plugins.apply DependencyLockPlugin
         }
 
+        project.tasks.matching { it.name == 'bintrayUpload' || it.name == 'artifactoryPublish'}.all { Task task ->
+            task.mustRunAfter('build')
+            project.rootProject.tasks.release.dependsOn(task)
+        }
+
+        project.tasks.matching { it.name == 'bintrayUpload' }.all { Task task ->
+            project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
+                task.onlyIf {
+                    graph.hasTask(':final') || graph.hasTask(':candidate')
+                }
+            }
+        }
+
+        project.tasks.matching { it.name == 'artifactoryPublish'}.all { Task task ->
+            project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
+                task.onlyIf {
+                    graph.hasTask(':snapshot')
+                }
+            }
+        }
+
         if (type.isRootProject) {
-            project.tasks.matching { it.name == 'bintrayUpload' || it.name == 'artifactoryPublish'}.all { Task task ->
-                task.mustRunAfter('build')
-                project.rootProject.tasks.release.dependsOn(task)
-            }
-
-            project.tasks.matching { it.name == 'bintrayUpload' }.all { Task task ->
-                project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
-                    task.onlyIf {
-                        graph.hasTask(':final') || graph.hasTask(':candidate')
-                    }
-                }
-            }
-
-            project.tasks.matching { it.name == 'artifactoryPublish'}.all { Task task ->
-                project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
-                    task.onlyIf {
-                        graph.hasTask(':snapshot')
-                    }
-                }
-            }
-
             project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
                 if (graph.hasTask(':devSnapshot')) {
                     throw new GradleException('You cannot use the devSnapshot task from the release plugin. Please use the snapshot task.')
