@@ -17,7 +17,6 @@ package nebula.plugin.netflixossproject
 
 import nebula.core.GradleHelper
 import nebula.core.ProjectType
-import nebula.plugin.contacts.ContactsExtension
 import nebula.plugin.contacts.ContactsPlugin
 import nebula.plugin.dependencylock.DependencyLockPlugin
 import nebula.plugin.info.InfoPlugin
@@ -35,6 +34,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.execution.TaskExecutionGraph
+import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaPluginConvention
 import org.gradle.api.tasks.javadoc.Javadoc
@@ -86,6 +86,23 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
                     throw new GradleException('You cannot use the devSnapshot task from the release plugin. Please use the snapshot task.')
                 }
             }
+
+            def collectNetflixOSS = project.tasks.create('collectNetflixOSS')
+            collectNetflixOSS.doLast {
+                new File(project.buildDir, 'netflixoss').mkdirs()
+                def netflixoss = new File(project.buildDir, 'netflixoss/netflixoss.txt')
+                netflixoss.text = ''
+                project.allprojects.each { Project proj ->
+                    if (new File(proj.buildDir, 'libs').exists()) {
+                        netflixoss.append "${proj.group}:${proj.name}:${proj.version}\n"
+                    }
+                }
+            }
+            project.plugins.withType(JavaBasePlugin) {
+                collectNetflixOSS.mustRunAfter project.tasks.assemble
+                project.tasks.build.dependsOn collectNetflixOSS
+            }
+
         }
 
         if (type.isLeafProject) {
@@ -93,6 +110,11 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             project.plugins.apply NebulaJavadocJarPlugin
             project.plugins.apply NebulaSourceJarPlugin
             project.plugins.apply ContactsPlugin
+
+            project.plugins.withType(JavaBasePlugin) {
+                project.rootProject.tasks.collectNetflixOSS.mustRunAfter project.tasks.assemble
+                project.tasks.build.dependsOn project.rootProject.tasks.collectNetflixOSS
+            }
 
             project.plugins.withType(JavaPlugin) { JavaPlugin javaPlugin ->
                 JavaPluginConvention convention = project.convention.getPlugin(JavaPluginConvention)

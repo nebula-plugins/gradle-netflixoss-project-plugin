@@ -27,6 +27,7 @@ class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
 
         buildFile << """
             ext.dryRun = true
+            group = 'test.nebula'
             ${applyPlugin(NetflixOssProjectPlugin)}
             ${applyPlugin(JavaPlugin)}
         """.stripIndent()
@@ -41,5 +42,17 @@ class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
 
         then:
         noExceptionThrown()
+    }
+
+    def 'verify manifest created' () {
+        def result = '''\
+            test.nebula:verify-manifest-created:0.1.0-SNAPSHOT
+        '''.stripIndent()
+
+        when:
+        runTasksSuccessfully('build')
+
+        then:
+        new File(projectDir, 'build/netflixoss/netflixoss.txt').text == result
     }
 }
