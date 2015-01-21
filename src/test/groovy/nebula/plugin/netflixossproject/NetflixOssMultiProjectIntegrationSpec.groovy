@@ -32,6 +32,7 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
             }
 
             subprojects {
+                group = 'test.nebula'
                 ext.dryRun = true
                 ${applyPlugin(JavaPlugin)}
             }
@@ -72,5 +73,18 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
         def testNode = developers.developer.find { it.email == 'test@example.org'}
         testNode.id == 'test'
         testNode.name == 'Test Example'
+    }
+
+    def 'creates a manifest of published modules'() {
+        def result = '''\
+            test.nebula:sub1:0.1.0-SNAPSHOT
+            test.nebula:sub2:0.1.0-SNAPSHOT
+        '''.stripIndent()
+
+        when:
+        runTasksSuccessfully('build')
+
+        then:
+        new File(projectDir, 'build/netflixoss/netflixoss.txt').text == result
     }
 }

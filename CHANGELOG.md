@@ -1,3 +1,8 @@
+2.2.5 / 2015-01-20
+==================
+
+* Create a manifest of jars published by a project to ease internal importing
+
 2.2.4 / 2015-01-13
 ==================
 
