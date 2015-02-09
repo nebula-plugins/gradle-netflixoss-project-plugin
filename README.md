@@ -37,14 +37,14 @@ To include, add the following to your build.gradle
 If using gradle 2.1 or newer:
 
     plugins {
-      id 'nebula.netflixoss' version '2.2.5'
+      id 'nebula.netflixoss' version '2.2.7'
     }
 
 -or-
 
     buildscript {
       repositories { jcenter() }
-      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:2.2.5' }
+      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:2.2.7' }
     }
 
     allprojects {
@@ -56,6 +56,7 @@ If using gradle 2.1 or newer:
 These are some of the defaults that are set.
 
 * sourceCompatibility 1.7: Please change if you want to publish to older or newer java versions
+* release.scope set to minor: By default always bump the minor version
 * a placeholder developer is added to the contacts section: to add more see [gradle-contacts-plugin](https://github.com/nebula-plugins/gradle-contacts-plugin)
 
 
@@ -81,3 +82,17 @@ By default the license check is on. To turn it off:
 see [nebula-release-plugin](https://github.com/nebula-plugins/nebula-release-plugin)
 
 We disable the devSnapshot task since we release to oss.jfrog.org with maven style -SNAPSHOT versions.
+
+### Release Tasks
+
+* snapshot - release a snapshot version, does not create a tag, the version will be `major.minor.patch-SNAPSHOT`
+* candidate - release a candidate version, creates a tag, the version will be `major.minor.patch-rc.#`
+* final - release a final version, creates a tag, the version will be `major.minor.patch`
+
+### Properties to change the version
+
+-Prelease.scope - can be used to change which part of the version string is changed
+
+* major - If last tag was v1.2.3 the release would go to v2.0.0
+* minor - If last tag was v1.2.3 the release would go to v1.3.0, this is the default
+* patch - If last tag was v1.2.3 the release would go to v1.2.4

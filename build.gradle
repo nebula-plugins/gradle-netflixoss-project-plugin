@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 plugins {
-    id 'nebula.nebula-plugin' version '2.0.2'
+    id 'nebula.nebula-plugin' version '2.2.0'
     id 'idea'
 }
 
@@ -40,7 +40,7 @@ dependencies {
     compile "com.netflix.nebula:nebula-core:${pluginGradleVersion}.+"
     compile "com.netflix.nebula:nebula-project-plugin:${pluginGradleVersion}.+"
     compile "com.netflix.nebula:nebula-publishing-plugin:${pluginGradleVersion}.+"
-    compile 'com.netflix.nebula:nebula-release-plugin:2.2.+'
+    compile "com.netflix.nebula:nebula-release-plugin:${pluginGradleVersion}.+"
     compile 'nl.javadude.gradle.plugins:license-gradle-plugin:0.+'
     testCompile("com.netflix.nebula:nebula-test:${pluginGradleVersion}.+") {
         exclude group: 'org.codehaus.groovy', module: 'groovy-all'
