@@ -1,3 +1,14 @@
+2.2.7 / 2015-02-09
+==================
+
+* Update nebula-release to 2.2.5 to pick up major.minor.x release branches
+* Update all nebula dependencies to 2.2.x branch
+
+2.2.6 / 2015-02-09
+==================
+
+* Didn't merge pull request
+
 2.2.5 / 2015-01-20
 ==================
 
