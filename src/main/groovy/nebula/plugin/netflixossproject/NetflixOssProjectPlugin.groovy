@@ -27,6 +27,7 @@ import nebula.plugin.publishing.NebulaPublishingPlugin
 import nebula.plugin.publishing.NebulaSourceJarPlugin
 import nebula.plugin.release.NetflixOssStrategies
 import nebula.plugin.release.ReleasePlugin
+import nebula.plugin.release.ReleaseExtension
 import org.ajoberstar.gradle.git.release.base.ReleasePluginExtension
 import org.gradle.api.GradleException
 import org.gradle.api.JavaVersion
@@ -57,6 +58,16 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             ReleasePluginExtension releaseExtension = project.extensions.findByType(ReleasePluginExtension)
             releaseExtension.with {
                 defaultVersionStrategy = NetflixOssStrategies.SNAPSHOT
+            }
+
+            if (project.hasProperty(TRAVIS_CI) && project.property(TRAVIS_CI).toBoolean()) {
+                project.tasks.release.deleteAllActions() // remove tagging op on travisci
+                project.tasks.prepare.deleteAllActions()
+                if (type.isRootProject) {
+                    ReleaseExtension nebulaReleaseExtension = project.extensions.findByType(ReleaseExtension)
+                    nebulaReleaseExtension.addReleaseBranchPattern(/HEAD/)
+                    nebulaReleaseExtension.addReleaseBranchPattern(/v?\d+\.\d+\.\d+/)
+                }
             }
 
             project.plugins.apply DependencyLockPlugin
