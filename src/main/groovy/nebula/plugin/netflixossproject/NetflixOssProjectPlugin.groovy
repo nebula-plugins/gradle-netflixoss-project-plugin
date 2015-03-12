@@ -42,6 +42,8 @@ import org.gradle.plugins.ide.eclipse.EclipsePlugin
 import org.gradle.plugins.ide.idea.IdeaPlugin
 
 class NetflixOssProjectPlugin implements Plugin<Project> {
+    static final String TRAVIS_CI = 'release.travisci'
+    
     @Override
     void apply(Project project) {
         def gradleHelper = new GradleHelper(project)
@@ -56,6 +58,7 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             releaseExtension.with {
                 defaultVersionStrategy = NetflixOssStrategies.SNAPSHOT
             }
+
             project.plugins.apply DependencyLockPlugin
         }
 

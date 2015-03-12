@@ -1,3 +1,9 @@
+2.2.8 / 2015-03-12
+==================
+
+* Update gradle-dependency-lock to 2.2.2
+* Add release.travisci flag to disable some checks if building from a tag.
+
 2.2.7 / 2015-02-09
 ==================
 
