@@ -1,3 +1,8 @@
+2.2.9 / 2015-03-12
+==================
+
+* Further modification to release.travisci to remove more checks.
+
 2.2.8 / 2015-03-12
 ==================
 
