@@ -96,3 +96,7 @@ We disable the devSnapshot task since we release to oss.jfrog.org with maven sty
 * major - If last tag was v1.2.3 the release would go to v2.0.0
 * minor - If last tag was v1.2.3 the release would go to v1.3.0, this is the default
 * patch - If last tag was v1.2.3 the release would go to v1.2.4
+
+### Properties to disable branch checking for travisci releases off existing tags
+
+-Prelease.travisci - takes a boolean, true disables the prepare checks and release tagging, false(the default) leaves the normal checks in place.

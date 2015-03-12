@@ -87,4 +87,12 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
         then:
         new File(projectDir, 'build/netflixoss/netflixoss.txt').text == result
     }
+
+    def 'release.travisci flag does not break builds when set to true'() {
+        when:
+        runTasksSuccessfully('build', '-Prelease.travisci=true')
+
+        then:
+        noExceptionThrown()
+    }
 }
