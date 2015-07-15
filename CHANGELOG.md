@@ -1,3 +1,8 @@
+2.2.10 / 2015-07-14
+===================
+
+* Update nebula-release to 2.2.7, calculate version once for multiproject
+
 2.2.9 / 2015-03-12
 ==================
 

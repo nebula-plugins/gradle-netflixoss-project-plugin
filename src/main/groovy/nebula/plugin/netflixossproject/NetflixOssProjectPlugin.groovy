@@ -55,6 +55,10 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
         if (type.isLeafProject || type.isRootProject) {
             project.plugins.apply PublishingPlugin
             project.plugins.apply ReleasePlugin
+            project.plugins.apply DependencyLockPlugin
+        }
+
+        if (type.isRootProject) {
             ReleasePluginExtension releaseExtension = project.extensions.findByType(ReleasePluginExtension)
             releaseExtension.with {
                 defaultVersionStrategy = NetflixOssStrategies.SNAPSHOT
@@ -69,8 +73,6 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
                     nebulaReleaseExtension.addReleaseBranchPattern(/v?\d+\.\d+\.\d+/)
                 }
             }
-
-            project.plugins.apply DependencyLockPlugin
         }
 
         project.tasks.matching { it.name == 'bintrayUpload' || it.name == 'artifactoryPublish'}.all { Task task ->
