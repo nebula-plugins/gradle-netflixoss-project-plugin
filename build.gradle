@@ -13,9 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 plugins {
-    id 'nebula.nebula-plugin' version '2.2.0'
+    id 'groovy'
     id 'idea'
+    id 'jacoco'
+    id 'nebula.info' version '2.2.4'
+    id 'nebula.contacts' version '2.2.0'
+    id 'nebula.maven-publishing' version '3.0.2'
+    id 'nebula.nebula-release' version '2.2.7'
+    id 'nebula.nebula-bintray' version '3.0.1'
+    id 'com.gradle.plugin-publish' version '0.9.1'
+    id 'nebula.javadoc-jar' version '3.0.2'
+    id 'nebula.source-jar' version '3.0.2'
+    id 'nebula.apache-license-pom' version '3.0.2'
+    id 'com.github.kt3k.coveralls' version '2.4.0'
 }
 
 description 'Template for NetflixOSS projects'
@@ -31,6 +43,12 @@ contacts {
     }
 }
 
+apply from: 'https://raw.githubusercontent.com/nebula-plugins/nebula-core/1a495ccc109b1d226e7a8d4b3474eab0ac78abb2/common.gradle'
+
+ext {
+    pluginGradleVersion = 2.2
+}
+
 dependencies {
     compile "com.netflix.nebula:gradle-contacts-plugin:${pluginGradleVersion}.+"
     compile "com.netflix.nebula:gradle-dependency-lock-plugin:${pluginGradleVersion}.+"
@@ -42,9 +60,7 @@ dependencies {
     compile "com.netflix.nebula:nebula-publishing-plugin:${pluginGradleVersion}.+"
     compile "com.netflix.nebula:nebula-release-plugin:${pluginGradleVersion}.+"
     compile 'nl.javadude.gradle.plugins:license-gradle-plugin:0.+'
-    testCompile("com.netflix.nebula:nebula-test:${pluginGradleVersion}.+") {
-        exclude group: 'org.codehaus.groovy', module: 'groovy-all'
-    }
+
     testCompile 'org.ajoberstar:gradle-git:1.2.0'
 }
 
@@ -52,4 +68,15 @@ test {
     minHeapSize = '128m'
     maxHeapSize = '512m'
     jvmArgs '-XX:MaxPermSize=256m'
+}
+
+pluginBundle {
+    plugins {
+        netflixoss {
+            id = 'netflixoss'
+            displayName = 'Netflix OSS Project Template'
+            description = project.description
+            tags = ['nebula', 'netflix', 'oss']
+        }
+    }
 }
