@@ -40,9 +40,6 @@ class PublishingPlugin implements Plugin<Project> {
         project.plugins.apply BintrayPlugin
         project.plugins.apply org.gradle.api.publish.plugins.PublishingPlugin
 
-        project.tasks.getByName('verifyReleaseStatus').actions.clear()
-        project.tasks.getByName('verifySnapshotStatus').actions.clear()
-
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
         bintray.pkg.with {
             it.repo = 'maven'
@@ -66,10 +63,6 @@ class PublishingPlugin implements Plugin<Project> {
                 bintrayUpload.packageIssueTrackerUrl = "${url}/issues"
                 bintrayUpload.packageVcsUrl = "${url}.git"
             }
-        }
-
-        project.plugins.withType(JavaBasePlugin) {
-            bintrayUpload.mustRunAfter project.tasks.build
         }
     }
 
