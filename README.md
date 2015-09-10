@@ -30,26 +30,25 @@ For reference, these are Gradle-related modules used:
   * com.netflix.nebula:nebula-bintray-plugin - wraps gradle-bintray-plugin with different defaults and adding OJO support and multi-module support.
   * com.netflix.nebula:nebula-publishing-plugin - for producing a jar, source jar, javadoc jar with metadata about how it was produced.
   * com.netflix.nebula:nebula-release-plugin - for providing release tasks, versioning, and tagging
-  * com.netflix.nebula:nebula-test - for Gradle integration tests.
   * nl.javadude.gradle.plugins:license-gradle-plugin - for license recommendations
 
 # Applying the Plugin
 
-This plugin was tested with Gradle 2.2.1
+This plugin was tested with Gradle 2.6
 
 To include, add the following to your build.gradle
 
 If using gradle 2.1 or newer:
 
     plugins {
-      id 'nebula.netflixoss' version '2.2.10'
+      id 'nebula.netflixoss' version '3.0.0'
     }
 
 -or-
 
     buildscript {
       repositories { jcenter() }
-      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:2.2.10' }
+      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.0.0' }
     }
 
     allprojects {
@@ -105,3 +104,34 @@ We disable the devSnapshot task since we release to oss.jfrog.org with maven sty
 ### Properties to disable branch checking for travisci releases off existing tags
 
 -Prelease.travisci - takes a boolean, true disables the prepare checks and release tagging, false(the default) leaves the normal checks in place.
+
+Gradle Compatibility Tested
+---------------------------
+
+Built with Oracle JDK7
+Tested with Oracle JDK8
+
+| Gradle Version | Works |
+| :------------: | :---: |
+| 2.2.1          | yes   |
+| 2.3            | yes   |
+| 2.4            | yes   |
+| 2.5            | yes   |
+| 2.6            | yes   |
+
+LICENSE
+=======
+
+Copyright 2014-2015 Netflix, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+<http://www.apache.org/licenses/LICENSE-2.0>
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.

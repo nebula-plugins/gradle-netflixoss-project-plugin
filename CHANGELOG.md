@@ -3,6 +3,7 @@
 
 * move to gradle 2.6
 * cleanup plugin due to changes in nebula-release-plugin and nebula-bintray-plugin
+* nebula-release will no longer publish to bintray if tests are failing
 
 2.2.10 / 2015-07-14
 ===================
