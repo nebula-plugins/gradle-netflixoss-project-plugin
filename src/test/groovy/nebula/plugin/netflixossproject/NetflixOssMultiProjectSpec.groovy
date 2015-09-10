@@ -19,9 +19,9 @@ import nebula.plugin.contacts.ContactsPlugin
 import nebula.plugin.dependencylock.DependencyLockPlugin
 import nebula.plugin.info.InfoPlugin
 import nebula.plugin.netflixossproject.publishing.PublishingPlugin
-import nebula.plugin.publishing.NebulaJavadocJarPlugin
-import nebula.plugin.publishing.NebulaPublishingPlugin
-import nebula.plugin.publishing.NebulaSourceJarPlugin
+import nebula.plugin.publishing.maven.MavenPublishPlugin
+import nebula.plugin.publishing.publications.JavadocJarPlugin
+import nebula.plugin.publishing.publications.SourceJarPlugin
 import nebula.test.ProjectSpec
 import org.ajoberstar.grgit.Grgit
 import org.gradle.api.Project
@@ -33,12 +33,14 @@ class NetflixOssMultiProjectSpec extends ProjectSpec {
     Project sub2
 
     def setup() {
-        Grgit.init(dir: projectDir)
+        def git = Grgit.init(dir: projectDir)
         sub1 = addSubproject('sub1')
         sub2 = addSubproject('sub2')
+        git.commit(message: 'initial')
     }
 
-    def 'multi-projects have correct plugins added to root project'() {
+    def
+    'multi-projects have correct plugins added to root project'() {
         [project, sub1, sub2].each { it.plugins.apply NetflixOssProjectPlugin }
 
         expect:
@@ -65,9 +67,9 @@ class NetflixOssMultiProjectSpec extends ProjectSpec {
         IdeaPlugin | _
         EclipsePlugin | _
         DependencyLockPlugin | _
-        NebulaJavadocJarPlugin | _
-        NebulaSourceJarPlugin | _
-        NebulaPublishingPlugin | _
+        JavadocJarPlugin | _
+        SourceJarPlugin | _
+        MavenPublishPlugin | _
         ContactsPlugin | _
     }
 }

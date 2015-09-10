@@ -22,9 +22,9 @@ import nebula.plugin.dependencylock.DependencyLockPlugin
 import nebula.plugin.info.InfoPlugin
 import nebula.plugin.netflixossproject.license.OssLicensePlugin
 import nebula.plugin.netflixossproject.publishing.PublishingPlugin
-import nebula.plugin.publishing.NebulaJavadocJarPlugin
-import nebula.plugin.publishing.NebulaPublishingPlugin
-import nebula.plugin.publishing.NebulaSourceJarPlugin
+import nebula.plugin.publishing.maven.MavenPublishPlugin
+import nebula.plugin.publishing.publications.JavadocJarPlugin
+import nebula.plugin.publishing.publications.SourceJarPlugin
 import nebula.plugin.release.NetflixOssStrategies
 import nebula.plugin.release.ReleasePlugin
 import nebula.plugin.release.ReleaseExtension
@@ -43,12 +43,11 @@ import org.gradle.plugins.ide.eclipse.EclipsePlugin
 import org.gradle.plugins.ide.idea.IdeaPlugin
 
 class NetflixOssProjectPlugin implements Plugin<Project> {
-    static final String TRAVIS_CI = 'release.travisci'
-    
     @Override
     void apply(Project project) {
-        def gradleHelper = new GradleHelper(project)
-        gradleHelper.addDefaultGroup('com.netflix')
+        if (!project.group) {
+            project.group = 'com.netflix'
+        }
         project.description = project.name
         ProjectType type = new ProjectType(project)
 
@@ -62,16 +61,6 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             ReleasePluginExtension releaseExtension = project.extensions.findByType(ReleasePluginExtension)
             releaseExtension.with {
                 defaultVersionStrategy = NetflixOssStrategies.SNAPSHOT
-            }
-
-            if (project.hasProperty(TRAVIS_CI) && project.property(TRAVIS_CI).toBoolean()) {
-                project.tasks.release.deleteAllActions() // remove tagging op on travisci
-                project.tasks.prepare.deleteAllActions()
-                if (type.isRootProject) {
-                    ReleaseExtension nebulaReleaseExtension = project.extensions.findByType(ReleaseExtension)
-                    nebulaReleaseExtension.addReleaseBranchPattern(/HEAD/)
-                    nebulaReleaseExtension.addReleaseBranchPattern(/v?\d+\.\d+\.\d+/)
-                }
             }
         }
 
@@ -122,9 +111,9 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
         }
 
         if (type.isLeafProject) {
-            project.plugins.apply NebulaPublishingPlugin
-            project.plugins.apply NebulaJavadocJarPlugin
-            project.plugins.apply NebulaSourceJarPlugin
+            project.plugins.apply MavenPublishPlugin
+            project.plugins.apply JavadocJarPlugin
+            project.plugins.apply SourceJarPlugin
             project.plugins.apply ContactsPlugin
 
             project.plugins.withType(JavaBasePlugin) {

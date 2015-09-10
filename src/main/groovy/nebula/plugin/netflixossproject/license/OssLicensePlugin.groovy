@@ -16,7 +16,8 @@
 package nebula.plugin.netflixossproject.license
 
 import nebula.core.GradleHelper
-import nebula.plugin.publishing.maven.NebulaBaseMavenPublishingPlugin
+import nebula.plugin.publishing.maven.MavenBasePublishPlugin
+import nebula.plugin.publishing.maven.license.MavenApacheLicensePlugin
 import nebula.plugin.responsible.FacetDefinition
 import nebula.plugin.responsible.NebulaFacetPlugin
 import nl.javadude.gradle.plugins.license.License
@@ -40,6 +41,7 @@ class OssLicensePlugin  implements Plugin<Project> {
     void apply(Project project) {
         this.project = project
 
+        project.plugins.apply(MavenApacheLicensePlugin)
         project.plugins.apply(LicensePlugin)
         def licenseExtension = project.extensions.getByType(LicenseExtension)
         licenseExtension.skipExistingHeaders = true
@@ -56,7 +58,7 @@ class OssLicensePlugin  implements Plugin<Project> {
         }
 
         // Hack to work around above bug
-        project.plugins.withType(NebulaFacetPlugin) {NebulaFacetPlugin facetPlugin ->
+        project.plugins.withType(NebulaFacetPlugin) { NebulaFacetPlugin facetPlugin ->
             facetPlugin.extension.all { FacetDefinition facet ->
                 License licenseCheckTask = project.tasks.getByName("license${facet.name.capitalize()}")
                 licenseCheckTask.ignoreFailures = true
@@ -76,29 +78,6 @@ class OssLicensePlugin  implements Plugin<Project> {
         }
         project.tasks.withType(License) {
             it.dependsOn(writeTask)
-        }
-
-        // POM File
-        def pomConfig = {
-            licenses {
-                license {
-                    name 'The Apache Software License, Version 2.0'
-                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    distribution 'repo'
-                }
-            }
-        }
-
-        project.plugins.withType(NebulaBaseMavenPublishingPlugin) { basePlugin ->
-            basePlugin.withMavenPublication { MavenPublication t ->
-                t.pom.withXml(new Action<XmlProvider>() {
-                    @Override
-                    void execute(XmlProvider x) {
-                        def root = x.asNode()
-                        root.children().last() + pomConfig
-                    }
-                })
-            }
         }
     }
 

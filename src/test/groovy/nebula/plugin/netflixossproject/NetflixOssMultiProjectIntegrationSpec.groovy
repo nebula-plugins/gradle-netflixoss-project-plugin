@@ -24,6 +24,7 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
 
     def setup() {
         grgit = Grgit.init(dir: projectDir)
+        grgit.remote.add(name: 'origin', url: 'git@fake.com:project/project.git')
 
         buildFile << """
             ext.dryRun = true
@@ -66,10 +67,10 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
 
     def 'verify contacts'() {
         when:
-        runTasksSuccessfully('generatePomFileForMavenNebulaPublication')
+        runTasksSuccessfully('generatePomFileForNebulaPublication')
 
         then:
-        def developers = new XmlSlurper().parse(new File(projectDir, 'sub1/build/publications/mavenNebula/pom-default.xml')).developers
+        def developers = new XmlSlurper().parse(new File(projectDir, 'sub1/build/publications/nebula/pom-default.xml')).developers
         def testNode = developers.developer.find { it.email == 'test@example.org'}
         testNode.id == 'test'
         testNode.name == 'Test Example'
