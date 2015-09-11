@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Netflix, Inc.
+ * Copyright 2014-2015 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -130,6 +130,6 @@ class NetflixOssProjectPluginSpec extends PluginProjectSpec {
         then:
         def people = project.plugins.getPlugin(BaseContactsPlugin).extension.people
         people.size() == 1
-        people.values().any { it.email == 'talent@netflix.com' }
+        people.values().any { it.email == 'netflixoss@netflix.com' }
     }
 }

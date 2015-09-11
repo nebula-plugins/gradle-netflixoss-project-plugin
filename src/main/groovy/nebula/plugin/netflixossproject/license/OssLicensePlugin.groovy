@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Netflix, Inc.
+ * Copyright 2015 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,15 @@
 package nebula.plugin.netflixossproject.license
 
 import nebula.core.GradleHelper
-import nebula.plugin.publishing.maven.MavenBasePublishPlugin
 import nebula.plugin.publishing.maven.license.MavenApacheLicensePlugin
 import nebula.plugin.responsible.FacetDefinition
 import nebula.plugin.responsible.NebulaFacetPlugin
 import nl.javadude.gradle.plugins.license.License
 import nl.javadude.gradle.plugins.license.LicenseExtension
 import nl.javadude.gradle.plugins.license.LicensePlugin
-import org.gradle.api.Action
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.XmlProvider
 import org.gradle.api.plugins.JavaPlugin
-import org.gradle.api.publish.maven.MavenPublication
 
 /**
  * Leverage license plugin to show missing headers, and inject license into the POM

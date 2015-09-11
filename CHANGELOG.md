@@ -1,3 +1,9 @@
+3.1.0 / 2015-09-11
+==================
+
+* Updated email address
+* Remove block that was disabling javadoc linting
+
 3.0.0 / 2015-09-10
 ==================
 
