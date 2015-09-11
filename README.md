@@ -15,7 +15,6 @@ primary responsibilities is to:
   * Provide release process
   * Configure publishing
   * Recommend license headers
-  * Add some error handling for javadoc in jdk8
 
 This project could be used as an example of how a "project plugin" could work. A "project plugin" is a Gradle plugin that
 provides consistency across many projects, e.g. in a Github org or an enterprise.
@@ -41,14 +40,14 @@ To include, add the following to your build.gradle
 If using gradle 2.1 or newer:
 
     plugins {
-      id 'nebula.netflixoss' version '3.0.0'
+      id 'nebula.netflixoss' version '3.1.0'
     }
 
 -or-
 
     buildscript {
       repositories { jcenter() }
-      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.0.0' }
+      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.1.0' }
     }
 
     allprojects {
@@ -104,6 +103,7 @@ We disable the devSnapshot task since we release to oss.jfrog.org with maven sty
 ### Properties to disable branch checking for travisci releases off existing tags
 
 -Prelease.travisci - takes a boolean, true disables the prepare checks and release tagging, false(the default) leaves the normal checks in place.
+-Prelease.disableGitChecks - does the same as above
 
 Gradle Compatibility Tested
 ---------------------------

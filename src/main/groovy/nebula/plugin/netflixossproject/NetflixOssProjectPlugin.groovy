@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Netflix, Inc.
+ * Copyright 2014-2015 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,6 @@
  */
 package nebula.plugin.netflixossproject
 
-import nebula.core.GradleHelper
 import nebula.core.ProjectType
 import nebula.plugin.contacts.ContactsPlugin
 import nebula.plugin.dependencylock.DependencyLockPlugin
@@ -27,7 +26,6 @@ import nebula.plugin.publishing.publications.JavadocJarPlugin
 import nebula.plugin.publishing.publications.SourceJarPlugin
 import nebula.plugin.release.NetflixOssStrategies
 import nebula.plugin.release.ReleasePlugin
-import nebula.plugin.release.ReleaseExtension
 import org.ajoberstar.gradle.git.release.base.ReleasePluginExtension
 import org.gradle.api.GradleException
 import org.gradle.api.JavaVersion
@@ -125,18 +123,12 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
                 JavaPluginConvention convention = project.convention.getPlugin(JavaPluginConvention)
                 convention.sourceCompatibility = JavaVersion.VERSION_1_7
             }
-
-            project.tasks.withType(Javadoc) {
-                if (JavaVersion.current().isJava8Compatible()) {
-                    options.addStringOption('Xdoclint:none', '-quiet')
-                }
-            }
         }
 
         project.plugins.apply ContactsPlugin
         if (type.isRootProject) {
             project.contacts {
-                'talent@netflix.com' {
+                'netflixoss@netflix.com' {
                     github 'netflixgithub'
                     moniker 'Netflix Open Source Development'
                 }
