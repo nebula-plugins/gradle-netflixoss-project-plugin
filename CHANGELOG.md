@@ -1,3 +1,8 @@
+3.1.1 / 2015-09-12
+==================
+
+* Fix a plugin ordering bug that will cause projects to upload as unspecified
+
 3.1.0 / 2015-09-11
 ==================
 
