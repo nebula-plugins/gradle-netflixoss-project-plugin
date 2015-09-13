@@ -50,16 +50,15 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
         ProjectType type = new ProjectType(project)
 
         if (type.isLeafProject || type.isRootProject) {
-            project.plugins.apply PublishingPlugin
             project.plugins.apply ReleasePlugin
-            project.plugins.apply DependencyLockPlugin
-        }
-
-        if (type.isRootProject) {
-            ReleasePluginExtension releaseExtension = project.extensions.findByType(ReleasePluginExtension)
-            releaseExtension.with {
-                defaultVersionStrategy = NetflixOssStrategies.SNAPSHOT
+            if (type.isRootProject) {
+                ReleasePluginExtension releaseExtension = project.extensions.findByType(ReleasePluginExtension)
+                releaseExtension.with {
+                    defaultVersionStrategy = NetflixOssStrategies.SNAPSHOT
+                }
             }
+            project.plugins.apply PublishingPlugin
+            project.plugins.apply DependencyLockPlugin
         }
 
         project.tasks.matching { it.name == 'bintrayUpload' || it.name == 'artifactoryPublish'}.all { Task task ->
