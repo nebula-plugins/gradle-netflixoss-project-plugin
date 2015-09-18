@@ -33,11 +33,11 @@ class PublishingPlugin implements Plugin<Project> {
             it.enabled = !dryRun
         }
 
+        project.plugins.apply BintrayPlugin
         project.tasks.withType(BintrayUploadTask, disable)
         project.tasks.withType(Upload, disable)
         project.tasks.withType(BuildInfoBaseTask, disable)
 
-        project.plugins.apply BintrayPlugin
         project.plugins.apply org.gradle.api.publish.plugins.PublishingPlugin
 
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
