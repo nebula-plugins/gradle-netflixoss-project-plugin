@@ -18,6 +18,7 @@ package nebula.plugin.netflixossproject
 import nebula.test.IntegrationSpec
 import org.ajoberstar.grgit.Grgit
 import org.gradle.api.plugins.JavaPlugin
+import spock.lang.Ignore
 
 class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
     Grgit grgit
@@ -45,6 +46,10 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
                 }
             }
         """.stripIndent()
+
+        settingsFile << '''\
+            rootProject.name = 'multiprojecttest'
+        '''
 
         addSubproject('sub1', '// hello')
         addSubproject('sub2', '''\
@@ -92,6 +97,38 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
     def 'release.travisci flag does not break builds when set to true'() {
         when:
         runTasksSuccessfully('build', '-Prelease.travisci=true')
+
+        then:
+        noExceptionThrown()
+    }
+
+    def 'make sure no pom is created in top level project'() {
+        buildFile << '''\
+            group = 'test.nebula'
+
+            subprojects {
+                publishing {
+                    repositories {
+                        maven {
+                            name 'testRepo'
+                            url '../build/testrepo'
+                        }
+                    }
+                }
+            }
+        '''.stripIndent()
+        when:
+        runTasksSuccessfully('publishToMavenLocal', 'publishNebulaPublicationToTestRepoRepository')
+
+        then:
+        def files = new FileNameFinder().getFileNames("$projectDir/build/testrepo/test/nebula", '**/*.pom')
+        files.size() == 2
+    }
+
+    @Ignore
+    def 'tasks runs without error'() {
+        when:
+        runTasksSuccessfully('tasks')
 
         then:
         noExceptionThrown()

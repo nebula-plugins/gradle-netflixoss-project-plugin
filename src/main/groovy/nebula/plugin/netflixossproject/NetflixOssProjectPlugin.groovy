@@ -31,12 +31,10 @@ import org.gradle.api.GradleException
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.Task
 import org.gradle.api.execution.TaskExecutionGraph
 import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaPluginConvention
-import org.gradle.api.tasks.javadoc.Javadoc
 import org.gradle.plugins.ide.eclipse.EclipsePlugin
 import org.gradle.plugins.ide.idea.IdeaPlugin
 
@@ -59,27 +57,6 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             }
             project.plugins.apply PublishingPlugin
             project.plugins.apply DependencyLockPlugin
-        }
-
-        project.tasks.matching { it.name == 'bintrayUpload' || it.name == 'artifactoryPublish'}.all { Task task ->
-            task.mustRunAfter('build')
-            project.rootProject.tasks.release.dependsOn(task)
-        }
-
-        project.tasks.matching { it.name == 'bintrayUpload' }.all { Task task ->
-            project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
-                task.onlyIf {
-                    graph.hasTask(':final') || graph.hasTask(':candidate')
-                }
-            }
-        }
-
-        project.tasks.matching { it.name == 'artifactoryPublish'}.all { Task task ->
-            project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
-                task.onlyIf {
-                    graph.hasTask(':snapshot')
-                }
-            }
         }
 
         if (type.isRootProject) {
@@ -111,7 +88,7 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             project.plugins.apply MavenPublishPlugin
             project.plugins.apply JavadocJarPlugin
             project.plugins.apply SourceJarPlugin
-            project.plugins.apply ContactsPlugin
+            project.plugins.apply OssLicensePlugin
 
             project.plugins.withType(JavaBasePlugin) {
                 project.rootProject.tasks.collectNetflixOSS.mustRunAfter project.tasks.assemble
@@ -133,8 +110,6 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
                 }
             }
         }
-
-        project.plugins.apply OssLicensePlugin
         project.plugins.apply InfoPlugin
         project.plugins.apply IdeaPlugin
         project.plugins.apply EclipsePlugin
