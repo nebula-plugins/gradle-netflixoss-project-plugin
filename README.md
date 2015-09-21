@@ -33,21 +33,21 @@ For reference, these are Gradle-related modules used:
 
 # Applying the Plugin
 
-This plugin was tested with Gradle 2.6
+This plugin was tested with Gradle 2.7
 
 To include, add the following to your build.gradle
 
 If using gradle 2.1 or newer:
 
     plugins {
-      id 'nebula.netflixoss' version '3.1.1'
+      id 'nebula.netflixoss' version '3.1.2'
     }
 
 -or-
 
     buildscript {
       repositories { jcenter() }
-      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.1.1' }
+      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.1.2' }
     }
 
     allprojects {
@@ -118,6 +118,11 @@ Tested with Oracle JDK8
 | 2.4            | yes   |
 | 2.5            | yes   |
 | 2.6            | yes   |
+| 2.7            | yes   |
+
+### Known Issues
+
+* Cannot run `gradlew tasks` in a multiproject due to a bug with the artifactory plugin we use to publish to oss.jfrog.org and the maven-publish default plugin
 
 LICENSE
 =======
