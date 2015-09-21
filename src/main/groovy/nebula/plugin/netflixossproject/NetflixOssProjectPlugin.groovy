@@ -55,6 +55,11 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
                     defaultVersionStrategy = NetflixOssStrategies.SNAPSHOT
                 }
             }
+            if (type.isLeafProject) {
+                project.plugins.apply MavenPublishPlugin
+                project.plugins.apply JavadocJarPlugin
+                project.plugins.apply SourceJarPlugin
+            }
             project.plugins.apply PublishingPlugin
             project.plugins.apply DependencyLockPlugin
         }
@@ -85,9 +90,7 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
         }
 
         if (type.isLeafProject) {
-            project.plugins.apply MavenPublishPlugin
-            project.plugins.apply JavadocJarPlugin
-            project.plugins.apply SourceJarPlugin
+
             project.plugins.apply OssLicensePlugin
 
             project.plugins.withType(JavaBasePlugin) {

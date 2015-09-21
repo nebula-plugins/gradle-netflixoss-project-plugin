@@ -1,5 +1,5 @@
-3.1.2-rc.1 / 2015-09-18
-=======================
+3.1.2 / 2015-09-21
+==================
 
 * BUGFIX: fix issue with publishing useless top level pom and breaking mavenCentral sync
 * Upgrade nebula-release-plugin to 3.0.2 to fix rc release from travis

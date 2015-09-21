@@ -21,7 +21,6 @@ import nebula.plugin.bintray.BintrayPlugin
 import nebula.plugin.info.scm.ScmInfoExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.tasks.Upload
 import org.jfrog.gradle.plugin.artifactory.task.BuildInfoBaseTask
 
@@ -33,12 +32,11 @@ class PublishingPlugin implements Plugin<Project> {
             it.enabled = !dryRun
         }
 
+        project.plugins.apply org.gradle.api.publish.plugins.PublishingPlugin
         project.plugins.apply BintrayPlugin
         project.tasks.withType(BintrayUploadTask, disable)
         project.tasks.withType(Upload, disable)
         project.tasks.withType(BuildInfoBaseTask, disable)
-
-        project.plugins.apply org.gradle.api.publish.plugins.PublishingPlugin
 
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
         bintray.pkg.with {
