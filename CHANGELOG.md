@@ -1,3 +1,9 @@
+3.2.0 / 2016-02-02
+==================
+
+* Update to latest bintray plugin
+* Add tests to make sure `./gradlew tasks` succeeds
+
 3.1.2 / 2015-09-21
 ==================
 
