@@ -24,7 +24,7 @@ plugins {
     id 'nebula.contacts' version '3.0.1'
     id 'nebula.dependency-lock' version '4.2.0'
     id 'nebula.maven-publish' version '4.4.4'
-    id 'nebula.nebula-release' version '3.2.0'
+    id 'nebula.nebula-release' version '4.0.0'
     id 'nebula.nebula-bintray' version '3.3.1'
     id 'nebula.javadoc-jar' version '4.4.4'
     id 'nebula.source-jar' version '4.4.4'
@@ -56,7 +56,7 @@ dependencies {
     compile "com.netflix.nebula:nebula-core:3.0.1"
     compile "com.netflix.nebula:nebula-project-plugin:3.0.3"
     compile "com.netflix.nebula:nebula-publishing-plugin:4.4.4"
-    compile "com.netflix.nebula:nebula-release-plugin:3.2.0"
+    compile "com.netflix.nebula:nebula-release-plugin:4.0.0"
     compile 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
 
     testCompile 'org.ajoberstar:gradle-git:1.4.1'

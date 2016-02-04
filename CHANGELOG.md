@@ -1,3 +1,9 @@
+3.2.1 / 2016-02-04
+==================
+
+* Update nebula.nebula-release 3.2.0->4.0.0
+    * This change is a no-op for nebula.netflixoss since the deleted logic is moving here
+
 3.2.0 / 2016-02-02
 ==================
 
