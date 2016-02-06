@@ -1,8 +1,9 @@
-3.2.1 / 2016-02-04
+3.2.1 / 2016-02-05
 ==================
 
-* Update nebula.nebula-release 3.2.0->4.0.0
-    * This change is a no-op for nebula.netflixoss since the deleted logic is moving here
+* nebula.nebula-release 3.2.0->4.0.1
+* nebula.nebula-bintray 3.3.1->3.3.3
+* Fixes tasks task on multiprojects
 
 3.2.0 / 2016-02-02
 ==================

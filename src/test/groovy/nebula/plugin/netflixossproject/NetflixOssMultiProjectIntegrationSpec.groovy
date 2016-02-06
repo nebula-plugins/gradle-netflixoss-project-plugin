@@ -125,7 +125,7 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
         files.size() == 2
     }
 
-    @Ignore('artifactory plugin we are using conflicts with maven-publish')
+    //@Ignore('artifactory plugin we are using conflicts with maven-publish')
     def 'tasks runs without error'() {
         when:
         runTasksSuccessfully('tasks')

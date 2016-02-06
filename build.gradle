@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Netflix, Inc.
+ * Copyright 2014-2016 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,8 +24,8 @@ plugins {
     id 'nebula.contacts' version '3.0.1'
     id 'nebula.dependency-lock' version '4.2.0'
     id 'nebula.maven-publish' version '4.4.4'
-    id 'nebula.nebula-release' version '4.0.0'
-    id 'nebula.nebula-bintray' version '3.3.1'
+    id 'nebula.nebula-release' version '4.0.1'
+    id 'nebula.nebula-bintray' version '3.3.2'
     id 'nebula.javadoc-jar' version '4.4.4'
     id 'nebula.source-jar' version '4.4.4'
     id 'nebula.maven-apache-license' version '4.4.4'
@@ -46,17 +46,17 @@ contacts {
     }
 }
 
-apply from: 'https://raw.githubusercontent.com/nebula-plugins/nebula-core/b676bbc026d0053494b5439ba8ef147c16adabba/common.gradle'
+apply from: 'https://raw.githubusercontent.com/nebula-plugins/nebula-core/59c9e15f561372a8a72bbe13e4fbb114d0ef16f8/common.gradle'
 
 dependencies {
     compile "com.netflix.nebula:gradle-contacts-plugin:3.0.1"
     compile "com.netflix.nebula:gradle-dependency-lock-plugin:4.2.0"
     compile "com.netflix.nebula:gradle-info-plugin:3.0.3"
-    compile "com.netflix.nebula:nebula-bintray-plugin:3.3.1"
+    compile "com.netflix.nebula:nebula-bintray-plugin:3.3.3"
     compile "com.netflix.nebula:nebula-core:3.0.1"
     compile "com.netflix.nebula:nebula-project-plugin:3.0.3"
     compile "com.netflix.nebula:nebula-publishing-plugin:4.4.4"
-    compile "com.netflix.nebula:nebula-release-plugin:4.0.0"
+    compile "com.netflix.nebula:nebula-release-plugin:4.0.1"
     compile 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
 
     testCompile 'org.ajoberstar:gradle-git:1.4.1'
