@@ -52,7 +52,7 @@ dependencies {
     compile "com.netflix.nebula:gradle-contacts-plugin:3.0.1"
     compile "com.netflix.nebula:gradle-dependency-lock-plugin:4.2.0"
     compile "com.netflix.nebula:gradle-info-plugin:3.0.3"
-    compile "com.netflix.nebula:nebula-bintray-plugin:3.3.3"
+    compile "com.netflix.nebula:nebula-bintray-plugin:3.3.4"
     compile "com.netflix.nebula:nebula-core:3.0.1"
     compile "com.netflix.nebula:nebula-project-plugin:3.0.3"
     compile "com.netflix.nebula:nebula-publishing-plugin:4.4.4"
