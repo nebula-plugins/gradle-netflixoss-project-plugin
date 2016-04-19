@@ -17,20 +17,8 @@
 buildscript { repositories { jcenter() } } // Some plugin dependencies (namely JFrog) are not in Maven Central
 
 plugins {
-    id 'groovy'
-    id 'idea'
-    id 'jacoco'
-    id 'nebula.info' version '3.0.3'
-    id 'nebula.contacts' version '3.0.1'
-    id 'nebula.dependency-lock' version '4.2.0'
-    id 'nebula.maven-publish' version '4.4.4'
-    id 'nebula.nebula-release' version '4.0.1'
-    id 'nebula.nebula-bintray' version '3.3.2'
-    id 'nebula.javadoc-jar' version '4.4.4'
-    id 'nebula.source-jar' version '4.4.4'
-    id 'nebula.maven-apache-license' version '4.4.4'
-    id 'com.gradle.plugin-publish' version '0.9.3'
-    id 'com.github.kt3k.coveralls' version '2.6.3'
+    id 'com.gradle.plugin-publish' version '0.9.1'
+    id 'nebula.plugin-plugin' version '4.0.0'
 }
 
 description 'Template for NetflixOSS projects'
@@ -45,8 +33,6 @@ contacts {
         github 'quidryan'
     }
 }
-
-apply from: 'https://raw.githubusercontent.com/nebula-plugins/nebula-core/59c9e15f561372a8a72bbe13e4fbb114d0ef16f8/common.gradle'
 
 dependencies {
     compile "com.netflix.nebula:gradle-contacts-plugin:3.0.1"
