@@ -48,11 +48,6 @@ dependencies {
     testCompile 'org.ajoberstar:gradle-git:1.4.1'
 }
 
-test {
-    maxHeapSize = '512m'
-    jvmArgs '-XX:MaxPermSize=128m'
-}
-
 pluginBundle {
     plugins {
         netflixoss {
