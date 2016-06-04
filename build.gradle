@@ -38,7 +38,7 @@ dependencies {
     compile "com.netflix.nebula:gradle-dependency-lock-plugin:latest.release"
     compile "com.netflix.nebula:gradle-info-plugin:latest.release"
     compile "com.netflix.nebula:nebula-bintray-plugin:latest.release"
-    compile "com.netflix.nebula:nebula-core:latest.release"
+    compile "com.netflix.nebula.core:nebula-core:latest.release"
     compile "com.netflix.nebula:nebula-project-plugin:latest.release"
     compile "com.netflix.nebula:nebula-publishing-plugin:latest.release"
     compile "com.netflix.nebula:nebula-release-plugin:latest.release"
