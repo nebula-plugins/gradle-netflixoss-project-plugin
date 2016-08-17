@@ -15,7 +15,6 @@
  */
 package nebula.plugin.netflixossproject.license
 
-import nebula.core.GradleHelper
 import nebula.plugin.publishing.maven.license.MavenApacheLicensePlugin
 import nebula.plugin.responsible.FacetDefinition
 import nebula.plugin.responsible.NebulaFacetPlugin
@@ -24,6 +23,7 @@ import nl.javadude.gradle.plugins.license.LicenseExtension
 import nl.javadude.gradle.plugins.license.LicensePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.internal.tasks.DefaultSourceSetContainer
 import org.gradle.api.plugins.JavaPlugin
 
 /**
@@ -44,13 +44,17 @@ class OssLicensePlugin  implements Plugin<Project> {
         licenseExtension.strictCheck = false
         licenseExtension.ignoreFailures = true
         licenseExtension.ext.year = Calendar.getInstance().get(Calendar.YEAR)
+        licenseExtension.excludes(['**/*.txt', '**/*.conf', '**/*.properties'])
 
         header = defineHeaderFile()
         licenseExtension.header = header
 
-        // Limit to just main sourceSet
         project.plugins.withType(JavaPlugin) {
+
             licenseExtension.sourceSets = [project.sourceSets.main]
+            licenseExtension.sourceSets.metaClass.all = { Closure closure ->
+                delegate.each(closure)
+            }
         }
 
         // Hack to work around above bug
@@ -75,11 +79,12 @@ class OssLicensePlugin  implements Plugin<Project> {
         project.tasks.withType(License) {
             it.dependsOn(writeTask)
         }
+
     }
 
     File defineHeaderFile() {
-        File tmpDir = new GradleHelper(project).getTempDir('license')
-
+        File tmpDir = new File(project.getBuildDir(), 'license')
+        tmpDir.mkdirs()
         new File(tmpDir, 'HEADER')
     }
 

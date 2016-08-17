@@ -127,7 +127,7 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
 
     def 'tasks runs without error'() {
         when:
-        runTasksSuccessfully('tasks')
+        runTasksSuccessfully('tasks', '--all')
 
         then:
         noExceptionThrown()
