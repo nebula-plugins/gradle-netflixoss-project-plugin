@@ -41,14 +41,14 @@ To include, add the following to your build.gradle
 If using gradle 2.1 or newer:
 
     plugins {
-      id 'nebula.netflixoss' version '3.2.3'
+      id 'nebula.netflixoss' version '3.4.0'
     }
 
 -or-
 
     buildscript {
       repositories { jcenter() }
-      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.2.3' }
+      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.4.0' }
     }
 
     allprojects {
@@ -123,10 +123,11 @@ Tested with Oracle JDK8
 | 2.8            | yes   |
 | 2.9            | yes   |
 | 2.10           | yes   |
-
-### Known Issues
-
-* Cannot run `gradlew tasks` in a multiproject due to a bug with the artifactory plugin we use to publish to oss.jfrog.org and the maven-publish default plugin hoping gradle 2.12 releases
+| 2.11           | yes   |
+| 2.12           | yes   |
+| 2.13           | yes   |
+| 2.14.1         | yes   |
+| 3.0            | yes   |
 
 LICENSE
 =======

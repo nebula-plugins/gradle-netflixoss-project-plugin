@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-
 plugins {
     id 'com.gradle.plugin-publish' version '0.9.5'
     id 'nebula.plugin-plugin' version '4.24.0'
@@ -36,15 +35,15 @@ contacts {
 dependencies {
     compile "com.netflix.nebula:gradle-contacts-plugin:3.0.1"
     compile "com.netflix.nebula:gradle-dependency-lock-plugin:4.3.0"
-    compile "com.netflix.nebula:gradle-info-plugin:3.1.0"
-    compile "com.netflix.nebula:nebula-bintray-plugin:3.4.0"
+    compile "com.netflix.nebula:gradle-info-plugin:3.2.0"
+    compile "com.netflix.nebula:nebula-bintray-plugin:3.5.0"
     compile "com.netflix.nebula:nebula-core:4.0.1"
-    compile "com.netflix.nebula:nebula-project-plugin:3.1.0"
-    compile "com.netflix.nebula:nebula-publishing-plugin:4.7.0"
-    compile "com.netflix.nebula:nebula-release-plugin:4.0.1"
-    compile 'nl.javadude.gradle.plugins:license-gradle-plugin:0.11.0'
+    compile "com.netflix.nebula:nebula-project-plugin:3.3.0"
+    compile "com.netflix.nebula:nebula-publishing-plugin:4.9.1"
+    compile "com.netflix.nebula:nebula-release-plugin:4.1.0"
+    compile "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.13.1"
 
-    testCompile 'org.ajoberstar:gradle-git:1.4.+'
+    testCompile 'org.ajoberstar:gradle-git:1.5.+'
 }
 
 pluginBundle {

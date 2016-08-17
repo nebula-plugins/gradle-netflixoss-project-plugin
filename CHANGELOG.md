@@ -1,3 +1,10 @@
+3.4.0 / 2016-08-17
+==================
+
+* Add excludes on some file types so they'll be ignored by the license plugin
+* Upgrade to gradle 3.0
+* Update nebula-publishing-plugin to include `nebula.compile-api` to add `compileApi` configuration
+
 3.3.0 / 2016-06-02
 ==================
 
