@@ -1,3 +1,9 @@
+3.5.0 / 2016-10-13
+==================
+
+* Add ability to configure that candidate builds should go to a known non jcenter/mavenCentral repository
+* Upgrade to gradle 3.1
+
 3.4.0 / 2016-08-17
 ==================
 
