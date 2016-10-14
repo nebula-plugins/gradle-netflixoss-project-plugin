@@ -13,10 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+buildscript {
+    repositories { jcenter() }
+}
 
 plugins {
-    id 'com.gradle.plugin-publish' version '0.9.5'
-    id 'nebula.plugin-plugin' version '4.24.0'
+    id 'com.gradle.plugin-publish' version '0.9.6'
+    id 'nebula.plugin-plugin' version '4.24.2'
 }
 
 description 'Template for NetflixOSS projects'
@@ -32,11 +35,17 @@ contacts {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7.1'
+    }
+}
+
 dependencies {
     compile "com.netflix.nebula:gradle-contacts-plugin:3.0.1"
     compile "com.netflix.nebula:gradle-dependency-lock-plugin:4.3.0"
-    compile "com.netflix.nebula:gradle-info-plugin:3.2.0"
-    compile "com.netflix.nebula:nebula-bintray-plugin:3.5.0"
+    compile "com.netflix.nebula:gradle-info-plugin:3.3.3"
+    compile "com.netflix.nebula:nebula-bintray-plugin:3.5.2"
     compile "com.netflix.nebula:nebula-core:4.0.1"
     compile "com.netflix.nebula:nebula-project-plugin:3.3.0"
     compile "com.netflix.nebula:nebula-publishing-plugin:4.9.1"

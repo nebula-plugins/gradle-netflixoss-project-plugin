@@ -27,6 +27,9 @@ import org.gradle.api.tasks.Upload
 import org.jfrog.gradle.plugin.artifactory.task.BuildInfoBaseTask
 
 class PublishingPlugin implements Plugin<Project> {
+
+    public static final String NETFLIXOSS_ALT_CANDIDATE_REPO = 'netflixossAltCandidateRepo'
+
     @Override
     void apply(Project project) {
         boolean dryRun = project.hasProperty('dryRun') && project.property('dryRun') as Boolean
@@ -60,6 +63,14 @@ class PublishingPlugin implements Plugin<Project> {
             it.userOrg = 'netflixoss'
             it.licenses = ['Apache-2.0']
             it.labels = ['netflixoss']
+        }
+
+        project.gradle.taskGraph.whenReady { TaskExecutionGraph tg ->
+            if (project.ext.has(NETFLIXOSS_ALT_CANDIDATE_REPO) && project.ext.get(NETFLIXOSS_ALT_CANDIDATE_REPO) == true) {
+                if (tg.hasTask(':candidate')) {
+                    bintray.pkg.repo = 'oss-candidate'
+                }
+            }
         }
 
         BintrayUploadTask bintrayUpload = (BintrayUploadTask) project.tasks.find { it instanceof BintrayUploadTask }

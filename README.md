@@ -34,14 +34,14 @@ For reference, these are Gradle-related modules used:
 
 # Applying the Plugin
 
-This plugin was tested with Gradle 2.10
+This plugin was tested with Gradle 3.0
 
 To include, add the following to your build.gradle
 
 If using gradle 2.1 or newer:
 
     plugins {
-      id 'nebula.netflixoss' version '3.4.0'
+      id 'nebula.netflixoss' version '3.5.0'
     }
 
 -or-
@@ -105,6 +105,14 @@ We disable the devSnapshot task since we release to oss.jfrog.org with maven sty
 
 -Prelease.travisci - takes a boolean, true disables the prepare checks and release tagging, false(the default) leaves the normal checks in place.
 -Prelease.disableGitChecks - does the same as above
+
+### Build Property to Use Alternative Publishing Repository
+
+if the following property is in place we will publish to a candidate repository which is not synced to 
+
+    ext {
+      netflixossAltCandidateRepo = true
+    }
 
 Gradle Compatibility Tested
 ---------------------------
