@@ -68,7 +68,9 @@ class PublishingPlugin implements Plugin<Project> {
         project.gradle.taskGraph.whenReady { TaskExecutionGraph tg ->
             if (project.ext.has(NETFLIXOSS_ALT_CANDIDATE_REPO) && project.ext.get(NETFLIXOSS_ALT_CANDIDATE_REPO) == true) {
                 if (tg.hasTask(':candidate')) {
-                    bintray.pkg.repo = 'oss-candidate'
+                    project.tasks.findByPath(':candidate').doFirst {
+                        bintray.pkg.repo = 'oss-candidate'
+                    }
                 }
             }
         }

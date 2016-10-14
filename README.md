@@ -136,6 +136,7 @@ Tested with Oracle JDK8
 | 2.13           | yes   |
 | 2.14.1         | yes   |
 | 3.0            | yes   |
+| 3.1            | yes   |
 
 LICENSE
 =======
