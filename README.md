@@ -110,9 +110,7 @@ We disable the devSnapshot task since we release to oss.jfrog.org with maven sty
 
 if the following property is in place we will publish to a candidate repository which is not synced to 
 
-    ext {
-      netflixossAltCandidateRepo = true
-    }
+    ./gradlew -PnetflixossAltCandidateRepo=true clean <snapshot|canidate|final>
 
 Gradle Compatibility Tested
 ---------------------------
