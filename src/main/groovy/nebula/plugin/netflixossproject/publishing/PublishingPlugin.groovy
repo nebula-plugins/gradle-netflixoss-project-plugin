@@ -60,19 +60,15 @@ class PublishingPlugin implements Plugin<Project> {
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
         bintray.pkg.with {
             it.repo = 'maven'
+            if (project.hasProperty(NETFLIXOSS_ALT_CANDIDATE_REPO)) {
+                def altCandidate = project.property(NETFLIXOSS_ALT_CANDIDATE_REPO)
+                if ((altCandidate instanceof String) ? altCandidate.toBoolean() : altCandidate) {
+                    it.repo = 'oss-candidate'
+                }
+            }
             it.userOrg = 'netflixoss'
             it.licenses = ['Apache-2.0']
             it.labels = ['netflixoss']
-        }
-
-        project.gradle.taskGraph.whenReady { TaskExecutionGraph tg ->
-            if (project.ext.has(NETFLIXOSS_ALT_CANDIDATE_REPO) && project.ext.get(NETFLIXOSS_ALT_CANDIDATE_REPO) == true) {
-                if (tg.hasTask(':candidate')) {
-                    project.tasks.findByPath(':candidate').doFirst {
-                        bintray.pkg.repo = 'oss-candidate'
-                    }
-                }
-            }
         }
 
         BintrayUploadTask bintrayUpload = (BintrayUploadTask) project.tasks.find { it instanceof BintrayUploadTask }

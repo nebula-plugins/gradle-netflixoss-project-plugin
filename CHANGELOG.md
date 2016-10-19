@@ -1,4 +1,4 @@
-3.5.1 / 2016-10-14
+3.5.1 / 2016-10-19
 ==================
 
 * BUGFIX: Update where flag is read to swap to separate candidate repository
