@@ -64,6 +64,7 @@ class PublishingPlugin implements Plugin<Project> {
                 def altCandidate = project.property(NETFLIXOSS_ALT_CANDIDATE_REPO)
                 if ((altCandidate instanceof String) ? altCandidate.toBoolean() : altCandidate) {
                     it.repo = 'oss-candidate'
+                    it.version.mavenCentralSync.sync = false
                 }
             }
             it.userOrg = 'netflixoss'
