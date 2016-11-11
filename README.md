@@ -41,14 +41,14 @@ To include, add the following to your build.gradle
 If using gradle 2.1 or newer:
 
     plugins {
-      id 'nebula.netflixoss' version '3.5.0'
+      id 'nebula.netflixoss' version '3.5.2'
     }
 
 -or-
 
     buildscript {
       repositories { jcenter() }
-      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.4.0' }
+      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.5.2' }
     }
 
     allprojects {
