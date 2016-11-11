@@ -1,3 +1,9 @@
+3.5.2 / 2016-11-11
+==================
+
+* BUGFIX: update gradle-info-plugin from 3.3.3 -> 3.3.4 to fix issue with empty configurations and manifest generation
+* Update gradle-dependency-lock-plugin from 4.3.0 -> 4.3.1
+
 3.5.1 / 2016-10-19
 ==================
 
