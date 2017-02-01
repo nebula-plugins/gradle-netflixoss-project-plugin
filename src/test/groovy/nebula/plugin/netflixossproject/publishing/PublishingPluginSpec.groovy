@@ -16,13 +16,45 @@
 package nebula.plugin.netflixossproject.publishing
 
 import nebula.test.ProjectSpec
+import spock.lang.Unroll
 
 class PublishingPluginSpec extends ProjectSpec {
-    def 'applying does not throw exceptions'() {
-        when:
-        project.plugins.apply PublishingPlugin
+  def 'applying does not throw exceptions'() {
+    when:
+    project.plugins.apply PublishingPlugin
 
-        then:
-        noExceptionThrown()
-    }
+    then:
+    noExceptionThrown()
+  }
+
+  @Unroll
+  void 'should get URL from origin'() {
+    when:
+    def result = PublishingPlugin.calculateUrlFromOrigin(input)
+
+    then:
+    result == output
+
+    where:
+    input                                          || output
+    'git@github.com:reactivex/rxjava-core.git'     || 'https://github.com/reactivex/rxjava-core'
+    'https://github.com/reactivex/rxjava-core'     || 'https://github.com/reactivex/rxjava-core'
+    'https://github.com/reactivex/rxjava-core.git' || 'https://github.com/reactivex/rxjava-core'
+  }
+
+  @Unroll
+  void 'should get Repo from origin'() {
+    when:
+    def result = PublishingPlugin.calculateRepoFromOrigin(input)
+
+    then:
+    result == output
+
+    where:
+    input                                          || output
+    'git@github.com:reactivex/rxjava-core.git'     || 'rxjava-core'
+    'https://github.com/reactivex/rxjava-core'     || 'rxjava-core'
+    'https://github.com/reactivex/rxjava-core.git' || 'rxjava-core'
+
+  }
 }
