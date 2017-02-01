@@ -90,7 +90,7 @@ class PublishingPlugin implements Plugin<Project> {
         }
     }
 
-    static GIT_PATTERN = /((git|ssh|https?):(\/\/))?(\w+@)?([\w\.]+)([\:\\/])([\w\.@\:\/\-~]+)(\.git)(\/)?/
+    static GIT_PATTERN = /((git|ssh|https?):(\/\/))?(\w+@)?([\w\.]+)([\:\\/])([\w\.@\:\/\-~]+)(\/)?/
 
     /**
      * Convert git syntax of git@github.com:reactivex/rxjava-core.git to https://github.com/reactivex/rxjava-core
@@ -98,12 +98,12 @@ class PublishingPlugin implements Plugin<Project> {
      */
     static String calculateUrlFromOrigin(String origin) {
         def m = origin =~ GIT_PATTERN
-        return "https://${m[0][5]}/${m[0][7]}"
+        return "https://${m[0][5]}/" + (m[0][7] - '.git')
     }
 
     static String calculateRepoFromOrigin(String origin) {
         def m = origin =~ GIT_PATTERN
-        String path = m[0][7]
+        String path = m[0][7] - '.git'
         path.tokenize('/').last()
     }
 }
