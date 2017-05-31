@@ -18,8 +18,8 @@ buildscript {
 }
 
 plugins {
-    id 'com.gradle.plugin-publish' version '0.9.7'
     id 'nebula.plugin-plugin' version '5.9.0'
+    id 'com.gradle.plugin-publish' version '0.9.7'
 }
 
 description 'Template for NetflixOSS projects'
