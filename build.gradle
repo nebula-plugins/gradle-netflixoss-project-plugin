@@ -18,7 +18,7 @@ buildscript {
 }
 
 plugins {
-    id 'nebula.plugin-plugin' version '5.16.1'
+    id 'nebula.plugin-plugin' version '5.17.0'
 }
 
 description 'Template for NetflixOSS projects'
