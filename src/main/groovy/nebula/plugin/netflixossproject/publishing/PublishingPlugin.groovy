@@ -104,8 +104,8 @@ class PublishingPlugin implements Plugin<Project> {
         path.tokenize('/').last()
     }
 
-    Boolean shouldUseCandidateRepo(Project project, TaskExecutionGraph graph) {
-        if (!project.gradle.startParameter.taskNames.contains('candidate')) {
+    Boolean shouldUseCandidateRepo(Project project) {
+        if (!(project.gradle.startParameter.taskNames.contains('candidate') || project.gradle.startParameter.taskNames.contains(':candidate'))) {
             return false
         }
 
