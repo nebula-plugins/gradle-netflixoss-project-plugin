@@ -41,14 +41,14 @@ To include, add the following to your build.gradle
 If using gradle 2.1 or newer:
 
     plugins {
-      id 'nebula.netflixoss' version '3.5.2'
+      id 'nebula.netflixoss' version '4.0.0'
     }
 
 -or-
 
     buildscript {
       repositories { jcenter() }
-      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:3.5.2' }
+      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:4.0.0' }
     }
 
     allprojects {
@@ -106,11 +106,17 @@ We disable the devSnapshot task since we release to oss.jfrog.org with maven sty
 -Prelease.travisci - takes a boolean, true disables the prepare checks and release tagging, false(the default) leaves the normal checks in place.
 -Prelease.disableGitChecks - does the same as above
 
-### Build Property to Use Alternative Publishing Repository
+# Where We Publish by Default
 
-if the following property is in place we will publish to a candidate repository which is not synced to 
+`snapshot` builds are published to oss.jfrog.org
+`candidate` we publish to a special candidate repo https://dl.bintray.com/netflixoss/oss-candidate
+`final` we publish to jcenter and mavenCentral
 
-    ./gradlew -PnetflixossAltCandidateRepo=true clean <snapshot|canidate|final>
+### Build Property to Disable Alternative Publishing Repository
+
+if the following property is in place and set to false we will publish to jcenter and mavenCentral instead of a staging candidate repo
+
+    ./gradlew -PnetflixossAltCandidateRepo=false clean candidate
 
 Gradle Compatibility Tested
 ---------------------------
@@ -120,26 +126,12 @@ Tested with Oracle JDK8
 
 | Gradle Version | Works |
 | :------------: | :---: |
-| 2.2.1          | yes   |
-| 2.3            | yes   |
-| 2.4            | yes   |
-| 2.5            | yes   |
-| 2.6            | yes   |
-| 2.7            | yes   |
-| 2.8            | yes   |
-| 2.9            | yes   |
-| 2.10           | yes   |
-| 2.11           | yes   |
-| 2.12           | yes   |
-| 2.13           | yes   |
-| 2.14.1         | yes   |
-| 3.0            | yes   |
-| 3.1            | yes   |
+| 4.1            | yes   |
 
 LICENSE
 =======
 
-Copyright 2014-2016 Netflix, Inc.
+Copyright 2014-2017 Netflix, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
