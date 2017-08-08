@@ -16,6 +16,7 @@
 package nebula.plugin.netflixossproject
 
 import nebula.core.ProjectType
+import nebula.plugin.compile.JavaCrossCompilePlugin
 import nebula.plugin.contacts.ContactsPlugin
 import nebula.plugin.dependencylock.DependencyLockPlugin
 import nebula.plugin.info.InfoPlugin
@@ -46,6 +47,7 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
         }
         project.description = project.name
         ProjectType type = new ProjectType(project)
+        project.plugins.apply JavaCrossCompilePlugin
 
         if (type.isLeafProject || type.isRootProject) {
             project.plugins.apply ReleasePlugin
