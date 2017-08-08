@@ -1,3 +1,8 @@
+4.0.0 / 2017-08-08
+==================
+
+* BREAKING: Swap candidate to default to publish to candidate repo
+
 3.5.2 / 2016-11-11
 ==================
 

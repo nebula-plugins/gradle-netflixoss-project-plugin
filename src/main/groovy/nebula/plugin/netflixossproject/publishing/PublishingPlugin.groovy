@@ -59,17 +59,16 @@ class PublishingPlugin implements Plugin<Project> {
 
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
         bintray.pkg.with {
-            it.repo = 'maven'
-            if (project.hasProperty(NETFLIXOSS_ALT_CANDIDATE_REPO)) {
-                def altCandidate = project.property(NETFLIXOSS_ALT_CANDIDATE_REPO)
-                if ((altCandidate instanceof String) ? altCandidate.toBoolean() : altCandidate) {
-                    it.repo = 'oss-candidate'
-                    it.version.mavenCentralSync.sync = false
+            repo = 'maven'
+            project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
+                if (shouldUseCandidateRepo(project, graph)) {
+                    repo = 'oss-candidate'
+                    version.mavenCentralSync.sync = false
                 }
             }
-            it.userOrg = 'netflixoss'
-            it.licenses = ['Apache-2.0']
-            it.labels = ['netflixoss']
+            userOrg = 'netflixoss'
+            licenses = ['Apache-2.0']
+            labels = ['netflixoss']
         }
 
         BintrayUploadTask bintrayUpload = (BintrayUploadTask) project.tasks.find { it instanceof BintrayUploadTask }
@@ -105,5 +104,18 @@ class PublishingPlugin implements Plugin<Project> {
         def m = origin =~ GIT_PATTERN
         String path = m[0][7] - '.git'
         path.tokenize('/').last()
+    }
+
+    Boolean shouldUseCandidateRepo(Project project, TaskExecutionGraph graph) {
+        if (!graph.hasTask(':candidate')) {
+            return false
+        }
+
+        if (project.hasProperty(NETFLIXOSS_ALT_CANDIDATE_REPO)) {
+            def myproperty = project.property(NETFLIXOSS_ALT_CANDIDATE_REPO)
+            return (myproperty instanceof String) ? myproperty.toBoolean() : myproperty
+        }
+
+        return true
     }
 }
