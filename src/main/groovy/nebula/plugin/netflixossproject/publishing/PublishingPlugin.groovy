@@ -60,11 +60,9 @@ class PublishingPlugin implements Plugin<Project> {
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
         bintray.pkg.with {
             repo = 'maven'
-            project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
-                if (shouldUseCandidateRepo(project, graph)) {
-                    repo = 'oss-candidate'
-                    version.mavenCentralSync.sync = false
-                }
+            if (shouldUseCandidateRepo(project)) {
+                repo = 'oss-candidate'
+                version.mavenCentralSync.sync = false
             }
             userOrg = 'netflixoss'
             licenses = ['Apache-2.0']
@@ -107,7 +105,7 @@ class PublishingPlugin implements Plugin<Project> {
     }
 
     Boolean shouldUseCandidateRepo(Project project, TaskExecutionGraph graph) {
-        if (!graph.hasTask(':candidate')) {
+        if (!project.gradle.startParameter.taskNames.contains('candidate')) {
             return false
         }
 
