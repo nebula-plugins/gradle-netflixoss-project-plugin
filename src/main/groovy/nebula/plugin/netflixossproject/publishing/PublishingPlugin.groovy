@@ -60,8 +60,10 @@ class PublishingPlugin implements Plugin<Project> {
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
         bintray.pkg.with {
             repo = 'maven'
+            project.logger.lifecycle('TRACER: Set to maven repo')
             if (shouldUseCandidateRepo(project)) {
                 repo = 'oss-candidate'
+                project.logger.lifecycle('TRACER: Set to oss-candidate repo')
                 version.mavenCentralSync.sync = false
             }
             userOrg = 'netflixoss'
@@ -104,16 +106,20 @@ class PublishingPlugin implements Plugin<Project> {
         path.tokenize('/').last()
     }
 
-    Boolean shouldUseCandidateRepo(Project project) {
+    static Boolean shouldUseCandidateRepo(Project project) {
+        project.logger.lifecycle("TRACER: ${project.gradle.startParameter.taskNames.toString()}")
         if (!(project.gradle.startParameter.taskNames.contains('candidate') || project.gradle.startParameter.taskNames.contains(':candidate'))) {
+            project.logger.lifecycle('TRACER: returning false as no candidate task')
             return false
         }
 
         if (project.hasProperty(NETFLIXOSS_ALT_CANDIDATE_REPO)) {
             def myproperty = project.property(NETFLIXOSS_ALT_CANDIDATE_REPO)
+            project.logger.lifecycle("TRACER: returning ${myproperty.toString()}")
             return (myproperty instanceof String) ? myproperty.toBoolean() : myproperty
         }
 
+        project.logger.lifecycle('TRACER: returning true')
         return true
     }
 }
