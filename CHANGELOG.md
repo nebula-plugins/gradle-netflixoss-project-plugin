@@ -1,7 +1,8 @@
-4.0.0 / 2017-08-08
+4.0.0 / 2017-08-09
 ==================
 
 * BREAKING: Swap candidate to default to publish to candidate repo
+* BREAKING: Requires jdk8
 
 3.5.2 / 2016-11-11
 ==================
