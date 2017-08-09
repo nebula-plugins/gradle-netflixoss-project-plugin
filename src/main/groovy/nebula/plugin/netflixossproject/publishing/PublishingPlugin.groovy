@@ -59,12 +59,13 @@ class PublishingPlugin implements Plugin<Project> {
 
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
         bintray.pkg.with {
-            repo = 'maven'
-            project.logger.lifecycle('TRACER: Set to maven repo')
             if (shouldUseCandidateRepo(project)) {
                 repo = 'oss-candidate'
                 project.logger.lifecycle('TRACER: Set to oss-candidate repo')
                 version.mavenCentralSync.sync = false
+            } else {
+                repo = 'maven'
+                project.logger.lifecycle('TRACER: Set to maven repo')
             }
             userOrg = 'netflixoss'
             licenses = ['Apache-2.0']
