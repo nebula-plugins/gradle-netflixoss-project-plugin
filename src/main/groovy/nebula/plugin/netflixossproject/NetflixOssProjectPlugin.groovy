@@ -53,7 +53,7 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             project.plugins.apply ReleasePlugin
             if (type.isRootProject) {
                 ReleasePluginExtension releaseExtension = project.extensions.findByType(ReleasePluginExtension)
-                releaseExtension.with {
+                releaseExtension?.with {
                     defaultVersionStrategy = NetflixOssStrategies.SNAPSHOT
                 }
             }
