@@ -1,3 +1,12 @@
+4.0.1 / 2017-09-07
+==================
+
+* BUGFIX: Only set defaultVersionStrategy if nebula.release found
+* Update gradle-java-cross-compile-plugin from 0.8.0 -> 0.9.0
+* Update nebula-release-plugin from 6.0.0 -> 6.0.1
+* Update gradle-git from 1.7.1 -> 1.7.2
+* Update nebula-publishing-plugin from 5.1.1 -> 5.1.3
+
 4.0.0 / 2017-08-09
 ==================
 
@@ -138,4 +147,3 @@
 ==================
 
 * initial release
-
