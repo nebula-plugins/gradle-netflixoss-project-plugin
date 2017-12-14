@@ -34,21 +34,21 @@ For reference, these are Gradle-related modules used:
 
 # Applying the Plugin
 
-This plugin was tested with Gradle 3.0
+This plugin was tested with Gradle 4.4
 
 To include, add the following to your build.gradle
 
 If using gradle 2.1 or newer:
 
     plugins {
-      id 'nebula.netflixoss' version '4.0.1'
+      id 'nebula.netflixoss' version '5.0.0'
     }
 
 -or-
 
     buildscript {
       repositories { jcenter() }
-      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:4.0.1' }
+      dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:5.0.0' }
     }
 
     allprojects {
@@ -126,7 +126,8 @@ Tested with Oracle JDK8
 
 | Gradle Version | Works |
 | :------------: | :---: |
-| 4.1            | yes   |
+| <= 4.3.1       | no    |
+| 4.4            | yes   |
 
 LICENSE
 =======
