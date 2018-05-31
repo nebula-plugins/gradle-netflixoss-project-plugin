@@ -24,7 +24,7 @@ import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.execution.TaskExecutionGraph
 import org.gradle.api.tasks.Upload
-import org.jfrog.gradle.plugin.artifactory.task.BuildInfoBaseTask
+import org.jfrog.gradle.plugin.artifactory.task.ArtifactoryTask
 
 class PublishingPlugin implements Plugin<Project> {
 
@@ -48,8 +48,8 @@ class PublishingPlugin implements Plugin<Project> {
             }
         }
         project.tasks.withType(Upload, disable)
-        project.tasks.withType(BuildInfoBaseTask, disable)
-        project.tasks.withType(BuildInfoBaseTask) { Task task ->
+        project.tasks.withType(ArtifactoryTask, disable)
+        project.tasks.withType(ArtifactoryTask) { Task task ->
             project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
                 task.onlyIf {
                     graph.hasTask(':snapshot') || graph.hasTask(':devSnapshot')
