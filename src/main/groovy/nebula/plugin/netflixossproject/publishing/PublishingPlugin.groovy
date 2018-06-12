@@ -16,7 +16,8 @@
 package nebula.plugin.netflixossproject.publishing
 
 import com.jfrog.bintray.gradle.BintrayExtension
-import com.jfrog.bintray.gradle.BintrayUploadTask
+import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
+import com.jfrog.bintray.gradle.tasks.BintrayPublishTask
 import nebula.plugin.bintray.BintrayPlugin
 import nebula.plugin.info.scm.ScmInfoExtension
 import org.gradle.api.Plugin
@@ -25,6 +26,7 @@ import org.gradle.api.Task
 import org.gradle.api.execution.TaskExecutionGraph
 import org.gradle.api.tasks.Upload
 import org.jfrog.gradle.plugin.artifactory.task.ArtifactoryTask
+import org.jfrog.gradle.plugin.artifactory.task.DeployTask
 
 class PublishingPlugin implements Plugin<Project> {
 
@@ -37,25 +39,30 @@ class PublishingPlugin implements Plugin<Project> {
             it.enabled = !dryRun
         }
 
-        project.plugins.apply org.gradle.api.publish.plugins.PublishingPlugin
-        project.plugins.apply BintrayPlugin
-        project.tasks.withType(BintrayUploadTask, disable)
-        project.tasks.withType(BintrayUploadTask) { Task task ->
+        def runOnlyForCandidateAndFinal = { Task task ->
             project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
                 task.onlyIf {
                     graph.hasTask(':final') || graph.hasTask(':candidate')
                 }
             }
         }
+        project.plugins.apply org.gradle.api.publish.plugins.PublishingPlugin
+        project.plugins.apply BintrayPlugin
+        project.tasks.withType(BintrayUploadTask, disable)
+        project.tasks.withType(BintrayUploadTask, runOnlyForCandidateAndFinal)
+        project.tasks.withType(BintrayPublishTask, disable)
+        project.tasks.withType(BintrayPublishTask, runOnlyForCandidateAndFinal)
         project.tasks.withType(Upload, disable)
         project.tasks.withType(ArtifactoryTask, disable)
-        project.tasks.withType(ArtifactoryTask) { Task task ->
+        def runOnlyForSnapshots = { Task task ->
             project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
                 task.onlyIf {
                     graph.hasTask(':snapshot') || graph.hasTask(':devSnapshot')
                 }
             }
         }
+        project.tasks.withType(ArtifactoryTask, runOnlyForSnapshots)
+        project.tasks.withType(DeployTask, runOnlyForSnapshots)
 
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
         bintray.pkg.with {
