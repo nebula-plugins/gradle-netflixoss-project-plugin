@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 plugins {
-    id 'nebula.plugin-plugin' version '8.1.0'
+    id 'nebula.plugin-plugin' version '8.1.2'
 }
 
 description 'Template for NetflixOSS projects'
@@ -38,7 +38,9 @@ dependencies {
     compile "com.netflix.nebula:gradle-java-cross-compile-plugin:latest.release"
     compile "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.13.1"
 
-    testCompile 'org.ajoberstar:gradle-git:1.5.+'
+    testCompile ('org.ajoberstar.grgit:grgit-core:3.0.0-beta.1') {
+        exclude group: 'org.codehaus.groovy', module: 'groovy'
+    }
 }
 
 pluginBundle {

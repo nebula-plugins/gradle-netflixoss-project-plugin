@@ -27,7 +27,7 @@ import nebula.plugin.publishing.publications.JavadocJarPlugin
 import nebula.plugin.publishing.publications.SourceJarPlugin
 import nebula.plugin.release.NetflixOssStrategies
 import nebula.plugin.release.ReleasePlugin
-import org.ajoberstar.gradle.git.release.base.ReleasePluginExtension
+import nebula.plugin.release.git.base.ReleasePluginExtension
 import org.gradle.api.GradleException
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
