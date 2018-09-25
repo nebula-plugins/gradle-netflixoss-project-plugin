@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 plugins {
-    id 'nebula.plugin-plugin' version '8.1.2'
+    id 'nebula.plugin-plugin' version '8.1.3'
 }
 
 description 'Template for NetflixOSS projects'
