@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Netflix, Inc.
+ * Copyright 2014-2018 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,22 +15,28 @@
  */
 package nebula.plugin.netflixossproject
 
+import nebula.plugin.responsible.NebulaIntegTestPlugin
 import nebula.test.IntegrationSpec
 import org.ajoberstar.grgit.Grgit
 import org.gradle.api.plugins.JavaPlugin
 
 class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
-    Grgit grgit
+    Grgit grgit;
 
     def setup() {
         grgit = Grgit.init(dir: projectDir)
 
         buildFile << """
-            ext.dryRun = true
             group = 'test.nebula'
             ${applyPlugin(NetflixOssProjectPlugin)}
             ${applyPlugin(JavaPlugin)}
-        """.stripIndent()
+            repositories {
+                jcenter()
+            }
+            dependencies {
+                testImplementation 'junit:junit:4.12'
+            }
+            """.stripIndent()
 
         grgit.add(patterns: ['build.gradle'])
         grgit.commit(message: 'Setup')
@@ -47,12 +53,48 @@ class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
     def 'verify manifest created' () {
         def result = '''\
             test.nebula:verify-manifest-created:0.1.0-SNAPSHOT
-        '''.stripIndent()
+            '''.stripIndent()
 
         when:
         runTasksSuccessfully('build')
 
         then:
         new File(projectDir, 'build/netflixoss/netflixoss.txt').text == result
+    }
+
+    def 'works with facet plugins'() {
+        facetAdditionalSetup()
+
+        when:
+        runTasksSuccessfully('build')
+
+        then:
+        noExceptionThrown()
+        new File(projectDir, "build/reports/tests/test/index.html").exists()
+        new File(projectDir, "build/reports/integTest/index.html").exists()
+    }
+
+    def 'writes licenses to all files'() {
+        facetAdditionalSetup()
+
+        String headerContains = "Copyright ${Calendar.getInstance().get(Calendar.YEAR)} Netflix, Inc."
+
+        when:
+        runTasksSuccessfully('tasks', '--all', 'licenseFormat')
+
+        then:
+        new File(projectDir, 'src/main/java/test/nebula/netflixoss/HelloWorld.java').text.contains(headerContains)
+        new File(projectDir, 'src/test/java/test/nebula/netflixoss/HelloWorldTest.java').text.contains(headerContains)
+        new File(projectDir, 'src/integTest/java/test/nebula/netflixoss/HelloWorldTest.java').text.contains(headerContains)
+    }
+
+    private void facetAdditionalSetup() {
+        buildFile << """\
+            ${applyPlugin(NebulaIntegTestPlugin)}
+            """.stripIndent()
+
+        writeHelloWorld('test.nebula.netflixoss')
+        writeTest('src/test/java/', 'test.nebula.netflixoss', false)
+        writeTest('src/integTest/java/', 'test.nebula.netflixoss', false)
     }
 }
