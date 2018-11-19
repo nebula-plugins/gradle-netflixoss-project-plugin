@@ -9,7 +9,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -29,16 +29,16 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         }
     },
     "compileClasspath": {
@@ -51,7 +51,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -71,16 +71,16 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         }
     },
     "default": {
@@ -93,7 +93,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -113,16 +113,16 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         }
     },
     "integTestCompile": {
@@ -135,7 +135,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -155,11 +155,11 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -167,8 +167,8 @@
             "requested": "7.+"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         },
         "org.ajoberstar.grgit:grgit-core": {
             "locked": "3.0.0-beta.1",
@@ -185,7 +185,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -205,11 +205,11 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -217,8 +217,8 @@
             "requested": "7.+"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         },
         "org.ajoberstar.grgit:grgit-core": {
             "locked": "3.0.0-beta.1",
@@ -235,7 +235,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -255,11 +255,11 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -267,8 +267,8 @@
             "requested": "7.+"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         },
         "org.ajoberstar.grgit:grgit-core": {
             "locked": "3.0.0-beta.1",
@@ -285,7 +285,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -305,11 +305,11 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -317,8 +317,8 @@
             "requested": "7.+"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         },
         "org.ajoberstar.grgit:grgit-core": {
             "locked": "3.0.0-beta.1",
@@ -345,7 +345,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -365,16 +365,16 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         }
     },
     "runtimeClasspath": {
@@ -387,7 +387,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -407,16 +407,16 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         }
     },
     "testCompile": {
@@ -429,7 +429,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -449,11 +449,11 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -461,8 +461,8 @@
             "requested": "7.+"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         },
         "org.ajoberstar.grgit:grgit-core": {
             "locked": "3.0.0-beta.1",
@@ -479,7 +479,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -499,11 +499,11 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -511,8 +511,8 @@
             "requested": "7.+"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         },
         "org.ajoberstar.grgit:grgit-core": {
             "locked": "3.0.0-beta.1",
@@ -529,7 +529,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -549,11 +549,11 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -561,8 +561,8 @@
             "requested": "7.+"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         },
         "org.ajoberstar.grgit:grgit-core": {
             "locked": "3.0.0-beta.1",
@@ -579,7 +579,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "4.0.2",
+            "locked": "4.0.3",
             "requested": "latest.release"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
@@ -599,11 +599,11 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-publishing-plugin": {
-            "locked": "9.0.2",
+            "locked": "9.2.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-release-plugin": {
-            "locked": "8.0.3",
+            "locked": "9.0.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-test": {
@@ -611,8 +611,8 @@
             "requested": "7.+"
         },
         "gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin": {
-            "locked": "0.13.1",
-            "requested": "0.13.1"
+            "locked": "0.14.0",
+            "requested": "0.14.0"
         },
         "org.ajoberstar.grgit:grgit-core": {
             "locked": "3.0.0-beta.1",

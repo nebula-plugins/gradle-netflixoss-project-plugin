@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Netflix, Inc.
+ * Copyright 2015-2018 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,11 @@
 package nebula.plugin.netflixossproject.license
 
 import nebula.plugin.publishing.maven.license.MavenApacheLicensePlugin
-import nebula.plugin.responsible.FacetDefinition
-import nebula.plugin.responsible.NebulaFacetPlugin
 import nl.javadude.gradle.plugins.license.License
 import nl.javadude.gradle.plugins.license.LicenseExtension
 import nl.javadude.gradle.plugins.license.LicensePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.internal.tasks.DefaultSourceSetContainer
-import org.gradle.api.plugins.JavaPlugin
 
 /**
  * Leverage license plugin to show missing headers, and inject license into the POM
@@ -44,26 +40,10 @@ class OssLicensePlugin  implements Plugin<Project> {
         licenseExtension.strictCheck = false
         licenseExtension.ignoreFailures = true
         licenseExtension.ext.year = Calendar.getInstance().get(Calendar.YEAR)
-        licenseExtension.excludes(['**/*.txt', '**/*.conf', '**/*.properties'])
+        licenseExtension.excludes(['**/*.txt', '**/*.conf', '**/*.json', '**/*.properties'])
 
         header = defineHeaderFile()
         licenseExtension.header = header
-
-        project.plugins.withType(JavaPlugin) {
-
-            licenseExtension.sourceSets = [project.sourceSets.main]
-            licenseExtension.sourceSets.metaClass.all = { Closure closure ->
-                delegate.each(closure)
-            }
-        }
-
-        // Hack to work around above bug
-        project.plugins.withType(NebulaFacetPlugin) { NebulaFacetPlugin facetPlugin ->
-            facetPlugin.extension.all { FacetDefinition facet ->
-                License licenseCheckTask = project.tasks.getByName("license${facet.name.capitalize()}")
-                licenseCheckTask.ignoreFailures = true
-            }
-        }
 
         def writeTask = project.task('writeLicenseHeader') {
             description 'Write license header for License tasks'

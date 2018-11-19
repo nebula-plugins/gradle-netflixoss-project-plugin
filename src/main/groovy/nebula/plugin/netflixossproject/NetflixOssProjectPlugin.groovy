@@ -1,5 +1,5 @@
 /*
- * Copyright 2014-2015 Netflix, Inc.
+ * Copyright 2014-2018 Netflix, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,9 +53,7 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             project.plugins.apply ReleasePlugin
             if (type.isRootProject) {
                 ReleasePluginExtension releaseExtension = project.extensions.findByType(ReleasePluginExtension)
-                releaseExtension?.with {
-                    defaultVersionStrategy = NetflixOssStrategies.SNAPSHOT
-                }
+                releaseExtension?.defaultVersionStrategy = NetflixOssStrategies.SNAPSHOT(project)
             }
             if (type.isLeafProject) {
                 project.plugins.apply MavenPublishPlugin

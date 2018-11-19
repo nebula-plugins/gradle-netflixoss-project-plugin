@@ -1,3 +1,9 @@
+6.1.0 / 2018-11-19
+==================
+
+* Update to newer version of license plugin 0.14.0
+* Now works with our facet plugin
+
 4.0.1 / 2017-09-07
 ==================
 
