@@ -23,7 +23,7 @@ com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4
 com.mycila.xmltool:xmltool:3.3
 com.mycila:license-maven-plugin:3.0
 com.mycila:mycila-xmltool:4.4.ga
-com.netflix.nebula:gradle-contacts-plugin:4.1.1
+com.netflix.nebula:gradle-contacts-plugin:5.0.3
 com.netflix.nebula:gradle-dependency-lock-plugin:7.8.0
 com.netflix.nebula:gradle-info-plugin:5.0.3
 com.netflix.nebula:gradle-java-cross-compile-plugin:3.1.0
