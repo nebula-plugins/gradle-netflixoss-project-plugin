@@ -1,16 +1,12 @@
-# This is a file for dependency locking, migrated from Nebula locks.
+# This is a Gradle generated file for dependency locking.
 # Manual edits can break the build and are not advised.
 # This file is expected to be part of source control.
 backport-util-concurrent:backport-util-concurrent:3.1
-ch.qos.logback:logback-core:1.1.3
 classworlds:classworlds:1.1-alpha-2
 com.fasterxml.jackson.core:jackson-annotations:2.9.0
 com.fasterxml.jackson.core:jackson-core:2.9.5
 com.fasterxml.jackson.core:jackson-databind:2.9.5
-com.fasterxml.jackson.datatype:jackson-datatype-joda:2.3.2
 com.github.zafarkhaja:java-semver:0.9.0
-com.google.code.findbugs:jsr305:3.0.0
-com.google.code.gson:gson:2.3.1
 com.google.guava:guava:18.0
 com.googlecode.javaewah:JavaEWAH:1.1.6
 com.jcraft:jsch.agentproxy.connector-factory:0.0.7
@@ -27,11 +23,10 @@ com.mycila.xmltool:xmltool:3.3
 com.mycila:license-maven-plugin:3.0
 com.mycila:mycila-xmltool:4.4.ga
 com.netflix.nebula:gradle-contacts-plugin:4.1.1
-com.netflix.nebula:gradle-dependency-lock-plugin:7.1.0
+com.netflix.nebula:gradle-dependency-lock-plugin:7.8.0
 com.netflix.nebula:gradle-info-plugin:4.0.3
 com.netflix.nebula:gradle-java-cross-compile-plugin:2.0.3
-com.netflix.nebula:gradle-metrics-plugin:5.3.0
-com.netflix.nebula:gradle-scm-plugin:4.1.0
+com.netflix.nebula:gradle-scm-plugin:5.0.3
 com.netflix.nebula:nebula-bintray-plugin:4.0.2
 com.netflix.nebula:nebula-core:4.0.1
 com.netflix.nebula:nebula-gradle-interop:1.0.11
@@ -39,7 +34,6 @@ com.netflix.nebula:nebula-project-plugin:6.0.3
 com.netflix.nebula:nebula-publishing-plugin:12.0.1
 com.netflix.nebula:nebula-release-plugin:10.1.2
 com.perforce:p4java:2015.2.1365273
-com.spatial4j:spatial4j:0.4.1
 com.squareup.moshi:moshi:1.8.0
 com.squareup.okio:okio:1.16.0
 com.thoughtworks.xstream:xstream:1.4.10
@@ -52,8 +46,6 @@ commons-lang:commons-lang:2.4
 commons-logging:commons-logging:1.2
 de.regnis.q.sequence:sequence-library:1.0.3
 gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.14.0
-io.searchbox:jest-common:0.1.7
-io.searchbox:jest:0.1.7
 joda-time:joda-time:2.10
 junit:junit:3.8.1
 nekohtml:nekohtml:1.9.6.2
@@ -61,7 +53,6 @@ nekohtml:xercesMinimal:1.9.6.2
 net.java.dev.jna:jna-platform:4.1.0
 net.java.dev.jna:jna:4.1.0
 net.java.dev.jna:platform:3.4.0
-net.logstash.logback:logstash-logback-encoder:4.5.1
 net.sf.ezmorph:ezmorph:1.0.6
 net.sf.json-lib:json-lib:2.3
 net.sourceforge.nekohtml:nekohtml:1.9.16
@@ -70,26 +61,10 @@ org.antlr:antlr-runtime:3.4
 org.apache.ant:ant-launcher:1.8.0
 org.apache.ant:ant:1.8.0
 org.apache.commons:commons-compress:1.16
-org.apache.commons:commons-lang3:3.4
 org.apache.commons:commons-pool2:2.2
-org.apache.httpcomponents:fluent-hc:4.5.1
-org.apache.httpcomponents:httpasyncclient:4.1
 org.apache.httpcomponents:httpclient:4.5.2
-org.apache.httpcomponents:httpcore-nio:4.4.1
 org.apache.httpcomponents:httpcore:4.4.5
 org.apache.ivy:ivy:2.2.0
-org.apache.lucene:lucene-analyzers-common:4.10.4
-org.apache.lucene:lucene-core:4.10.4
-org.apache.lucene:lucene-grouping:4.10.4
-org.apache.lucene:lucene-highlighter:4.10.4
-org.apache.lucene:lucene-join:4.10.4
-org.apache.lucene:lucene-memory:4.10.4
-org.apache.lucene:lucene-misc:4.10.4
-org.apache.lucene:lucene-queries:4.10.4
-org.apache.lucene:lucene-queryparser:4.10.4
-org.apache.lucene:lucene-sandbox:4.10.4
-org.apache.lucene:lucene-spatial:4.10.4
-org.apache.lucene:lucene-suggest:4.10.4
 org.apache.maven.wagon:wagon-file:1.0-beta-6
 org.apache.maven.wagon:wagon-http-lightweight:1.0-beta-6
 org.apache.maven.wagon:wagon-http-shared:1.0-beta-6
@@ -114,7 +89,6 @@ org.codehaus.plexus:plexus-container-default:1.0-alpha-9-stable-1
 org.codehaus.plexus:plexus-interpolation:1.14
 org.codehaus.plexus:plexus-utils:2.0.6
 org.eclipse.jgit:org.eclipse.jgit:5.3.0.201903130848-r
-org.elasticsearch:elasticsearch:1.7.2
 org.jetbrains.kotlin:kotlin-stdlib-common:1.3.50
 org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50
 org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.50
@@ -125,7 +99,6 @@ org.jfrog.buildinfo:build-info-client:2.11.3
 org.jfrog.buildinfo:build-info-extractor-gradle:4.7.5
 org.jfrog.buildinfo:build-info-extractor:2.11.3
 org.objenesis:objenesis:2.6
-org.projectlombok:lombok:1.16.6
 org.slf4j:slf4j-api:1.7.12
 org.sonatype.plexus:plexus-cipher:1.4
 org.sonatype.plexus:plexus-sec-dispatcher:1.3
@@ -133,7 +106,6 @@ org.springframework:spring-asm:3.1.3.RELEASE
 org.springframework:spring-core:3.1.3.RELEASE
 org.tmatesoft.sqljet:sqljet:1.1.10
 org.tmatesoft.svnkit:svnkit:1.8.12
-org.yaml:snakeyaml:1.12
 xerces:xercesImpl:2.9.1
 xml-resolver:xml-resolver:1.2
 xmlpull:xmlpull:1.1.3.1
