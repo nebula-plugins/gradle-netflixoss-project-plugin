@@ -32,7 +32,7 @@ com.netflix.nebula:nebula-core:4.0.1
 com.netflix.nebula:nebula-gradle-interop:1.0.11
 com.netflix.nebula:nebula-project-plugin:6.0.3
 com.netflix.nebula:nebula-publishing-plugin:13.4.1
-com.netflix.nebula:nebula-release-plugin:10.1.2
+com.netflix.nebula:nebula-release-plugin:11.1.2
 com.perforce:p4java:2015.2.1365273
 com.squareup.moshi:moshi:1.8.0
 com.squareup.okio:okio:1.16.0
