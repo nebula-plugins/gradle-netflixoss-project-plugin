@@ -25,7 +25,7 @@ com.mycila:license-maven-plugin:3.0
 com.mycila:mycila-xmltool:4.4.ga
 com.netflix.nebula:gradle-contacts-plugin:4.1.1
 com.netflix.nebula:gradle-dependency-lock-plugin:7.8.0
-com.netflix.nebula:gradle-info-plugin:4.0.3
+com.netflix.nebula:gradle-info-plugin:5.0.3
 com.netflix.nebula:gradle-java-cross-compile-plugin:2.0.3
 com.netflix.nebula:gradle-scm-plugin:5.0.3
 com.netflix.nebula:nebula-bintray-plugin:4.0.2
