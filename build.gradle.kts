@@ -33,7 +33,7 @@ val rpalcolea = Contact("roberto@perezalcolea.info")
 rpalcolea.moniker = "Roberto Perez Alcolea"
 rpalcolea.github = "rpalcolea"
 contacts {
-    people.set("rob.spieldenner@gmail.com", contact)
+    people.set("rob.spieldenner@gmail.com", rspieldenner)
     people.set("roberto@perezalcolea.info", rpalcolea)
 }
 
