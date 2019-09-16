@@ -55,7 +55,7 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
         addSubproject('sub1', '// hello')
         addSubproject('sub2', '''\
             dependencies {
-                compile project(':sub1')
+                implementation project(':sub1')
             }
         '''.stripIndent())
 
