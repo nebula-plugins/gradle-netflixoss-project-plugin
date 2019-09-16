@@ -30,6 +30,7 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
         buildFile << """
             ext.dryRun = true
             allprojects {
+                ${applyPlugin(JavaPlugin)}
                 ${applyPlugin(NetflixOssProjectPlugin)}
             }
 
@@ -91,7 +92,7 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
         runTasksSuccessfully('build')
 
         then:
-        new File(projectDir, 'build/netflixoss/netflixoss.txt').text == result
+        new File(projectDir, 'build/netflixoss/netflixoss.txt').text.contains(result)
     }
 
     def 'release.travisci flag does not break builds when set to true'() {

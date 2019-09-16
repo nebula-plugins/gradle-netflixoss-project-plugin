@@ -15,10 +15,13 @@
  */
 package nebula.plugin.netflixossproject.publishing
 
-import com.jfrog.bintray.gradle.BintrayExtension
-import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
-import com.jfrog.bintray.gradle.tasks.BintrayPublishTask
+
+import nebula.plugin.bintray.BintrayExtension
 import nebula.plugin.bintray.BintrayPlugin
+import nebula.plugin.bintray.NebulaBintrayPackageTask
+import nebula.plugin.bintray.NebulaBintrayVersionTask
+import nebula.plugin.bintray.NebulaGpgSignVersionTask
+import nebula.plugin.bintray.NebulaMavenCentralVersionSyncTask
 import nebula.plugin.info.scm.ScmInfoExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -48,12 +51,15 @@ class PublishingPlugin implements Plugin<Project> {
         }
         project.plugins.apply org.gradle.api.publish.plugins.PublishingPlugin
         project.plugins.apply BintrayPlugin
-        project.tasks.withType(BintrayUploadTask, disable)
-        project.tasks.withType(BintrayUploadTask, runOnlyForCandidateAndFinal)
-        project.tasks.withType(BintrayPublishTask, disable)
-        project.tasks.withType(BintrayPublishTask, runOnlyForCandidateAndFinal)
+        project.tasks.withType(NebulaBintrayPackageTask, disable)
+        project.tasks.withType(NebulaBintrayPackageTask, runOnlyForCandidateAndFinal)
+        project.tasks.withType(NebulaMavenCentralVersionSyncTask, disable)
+        project.tasks.withType(NebulaMavenCentralVersionSyncTask, runOnlyForCandidateAndFinal)
+        project.tasks.withType(NebulaGpgSignVersionTask, disable)
+        project.tasks.withType(NebulaGpgSignVersionTask, runOnlyForCandidateAndFinal)
+        project.tasks.withType(NebulaBintrayVersionTask, disable)
+        project.tasks.withType(NebulaBintrayVersionTask, runOnlyForCandidateAndFinal)
         project.tasks.withType(Upload, disable)
-        project.tasks.withType(ArtifactoryTask, disable)
         def runOnlyForSnapshots = { Task task ->
             project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
                 task.onlyIf {
@@ -65,33 +71,28 @@ class PublishingPlugin implements Plugin<Project> {
         project.tasks.withType(DeployTask, runOnlyForSnapshots)
 
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
-        bintray.pkg.with {
+        bintray.with {
             if (shouldUseCandidateRepo(project)) {
-                repo = 'oss-candidate'
-                version.mavenCentralSync.sync = false
+                repo.set('oss-candidate')
+                syncToMavenCentral.set(false)
             } else {
-                repo = 'maven'
+                repo.set('maven')
             }
-            userOrg = 'netflixoss'
-            licenses = ['Apache-2.0']
-            labels = ['netflixoss']
+            userOrg.set('netflixoss')
+            licenses.set(['Apache-2.0'])
+            labels.set(['netflixoss'])
         }
 
-        BintrayUploadTask bintrayUpload = (BintrayUploadTask) project.tasks.find { it instanceof BintrayUploadTask }
+        ScmInfoExtension scmInfo = project.extensions.findByType(ScmInfoExtension)
+        // We have to change the task directly, since they already copied from the extension in an afterEvaluate
 
-        bintrayUpload.doFirst {
-            ScmInfoExtension scmInfo = project.extensions.findByType(ScmInfoExtension)
-            // We have to change the task directly, since they already copied from the extension in an afterEvaluate
-
-            if (scmInfo) {
-                // Assuming scmInfo.origin is something like git@github.com:netflix/project.git
-                bintrayUpload.packageName = calculateRepoFromOrigin(scmInfo.origin) ?: project.rootProject.name
-
-                def url = calculateUrlFromOrigin(scmInfo.origin)
-                bintrayUpload.packageWebsiteUrl = url
-                bintrayUpload.packageIssueTrackerUrl = "${url}/issues"
-                bintrayUpload.packageVcsUrl = "${url}.git"
-            }
+        if (scmInfo) {
+            // Assuming scmInfo.origin is something like git@github.com:netflix/project.git
+            bintray.pkgName.set(calculateRepoFromOrigin(scmInfo.origin) ?: project.rootProject.name)
+            def url = calculateUrlFromOrigin(scmInfo.origin)
+            bintray.websiteUrl.set(url)
+            bintray.issueTrackerUrl.set( "${url}/issues")
+            bintray.vcsUrl.set("${url}.git")
         }
     }
 
