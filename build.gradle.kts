@@ -26,11 +26,15 @@ plugins {
 description = "Template for NetflixOSS projects"
 
 
-val contact = Contact("rob.spieldenner@gmail.com")
-contact.moniker = "Rob Spieldenner"
-contact.github = "rspieldenner"
+val rspieldenner = Contact("rob.spieldenner@gmail.com")
+rspieldenner.moniker = "Rob Spieldenner"
+rspieldenner.github = "rspieldenner"
+val rpalcolea = Contact("roberto@perezalcolea.info")
+rpalcolea.moniker = "Roberto Perez Alcolea"
+rpalcolea.github = "rpalcolea"
 contacts {
     people.set("rob.spieldenner@gmail.com", contact)
+    people.set("roberto@perezalcolea.info", rpalcolea)
 }
 
 dependencies {
