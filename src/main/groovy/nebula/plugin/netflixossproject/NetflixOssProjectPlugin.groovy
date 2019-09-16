@@ -100,7 +100,7 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
 
             project.plugins.withType(JavaPlugin) { JavaPlugin javaPlugin ->
                 JavaPluginConvention convention = project.convention.getPlugin(JavaPluginConvention)
-                convention.sourceCompatibility = JavaVersion.VERSION_1_7
+                convention.sourceCompatibility = JavaVersion.VERSION_1_8
             }
         }
 
