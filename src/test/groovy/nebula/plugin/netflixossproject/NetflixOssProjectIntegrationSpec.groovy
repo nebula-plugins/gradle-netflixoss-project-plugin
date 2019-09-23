@@ -24,6 +24,8 @@ class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
     Grgit grgit;
 
     def setup() {
+        //TODO: remove this when https://github.com/hierynomus/license-gradle-plugin/issues/179 is fixed
+        System.setProperty('ignoreDeprecations', 'true')
         grgit = Grgit.init(dir: projectDir)
 
         buildFile << """
