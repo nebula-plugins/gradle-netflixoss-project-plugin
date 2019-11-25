@@ -71,14 +71,7 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
                 if (graph.hasTask(':devSnapshot')) {
                     throw new GradleException('You cannot use the devSnapshot task from the release plugin. Please use the snapshot task.')
                 }
-                if (graph.hasTask(':snapshot')) {
-                    project.tasks.withType(PublishToMavenRepository).configureEach(new Action<PublishToMavenRepository>() {
-                        @Override
-                        void execute(PublishToMavenRepository publishToMavenRepository) {
-                                publishToMavenRepository.enabled = false
-                        }
-                    })
-                }
+
             }
 
             def collectNetflixOSS = project.tasks.create('collectNetflixOSS')
@@ -126,5 +119,16 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
         project.plugins.apply InfoPlugin
         project.plugins.apply IdeaPlugin
         project.plugins.apply EclipsePlugin
+
+
+        if (project.gradle.startParameter.taskNames.any { it.endsWith('snapshot') }) {
+            project.tasks.withType(PublishToMavenRepository).configureEach(new Action<PublishToMavenRepository>() {
+                @Override
+                void execute(PublishToMavenRepository publishToMavenRepository) {
+                    publishToMavenRepository.enabled = false
+                }
+            })
+        }
+
     }
 }
