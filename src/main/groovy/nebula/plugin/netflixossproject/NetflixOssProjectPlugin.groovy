@@ -28,6 +28,7 @@ import nebula.plugin.publishing.publications.SourceJarPlugin
 import nebula.plugin.release.NetflixOssStrategies
 import nebula.plugin.release.ReleasePlugin
 import nebula.plugin.release.git.base.ReleasePluginExtension
+import org.gradle.api.Action
 import org.gradle.api.GradleException
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -36,6 +37,7 @@ import org.gradle.api.execution.TaskExecutionGraph
 import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaPluginConvention
+import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 import org.gradle.plugins.ide.eclipse.EclipsePlugin
 import org.gradle.plugins.ide.idea.IdeaPlugin
 
@@ -68,6 +70,14 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
                 if (graph.hasTask(':devSnapshot')) {
                     throw new GradleException('You cannot use the devSnapshot task from the release plugin. Please use the snapshot task.')
+                }
+                if (graph.hasTask(':snapshot')) {
+                    project.tasks.withType(PublishToMavenRepository).configureEach(new Action<PublishToMavenRepository>() {
+                        @Override
+                        void execute(PublishToMavenRepository publishToMavenRepository) {
+                                publishToMavenRepository.enabled = false
+                        }
+                    })
                 }
             }
 
