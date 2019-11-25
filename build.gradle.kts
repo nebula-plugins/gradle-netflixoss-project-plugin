@@ -19,7 +19,7 @@ plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
     `groovy`
-    id("nebula.plugin-plugin") version "13.1.0"
+    id("nebula.plugin-plugin") version "13.2.0"
 }
 
 
