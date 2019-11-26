@@ -17,7 +17,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-bintray-plugin": {
-            "locked": "7.4.3",
+            "locked": "7.5.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-core": {
@@ -53,16 +53,6 @@
             "requested": "latest.release"
         }
     },
-    "compileOnly": {
-        "org.jetbrains.kotlin:kotlin-reflect": {
-            "locked": "1.3.50",
-            "requested": "1.3.50"
-        },
-        "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.50",
-            "requested": "1.3.50"
-        }
-    },
     "compileOnlyDependenciesMetadata": {
         "org.jetbrains.kotlin:kotlin-reflect": {
             "locked": "1.3.50",
@@ -91,7 +81,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-bintray-plugin": {
-            "locked": "7.4.3",
+            "locked": "7.5.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-core": {
@@ -147,7 +137,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-bintray-plugin": {
-            "locked": "7.4.3",
+            "locked": "7.5.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-core": {
@@ -193,7 +183,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-bintray-plugin": {
-            "locked": "7.4.3",
+            "locked": "7.5.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-core": {
@@ -255,7 +245,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-bintray-plugin": {
-            "locked": "7.4.3",
+            "locked": "7.5.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-core": {
@@ -317,7 +307,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-bintray-plugin": {
-            "locked": "7.4.3",
+            "locked": "7.5.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-core": {
@@ -353,7 +343,7 @@
             "requested": "1.3.50"
         },
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.50",
+            "locked": "1.3.60",
             "requested": "1.3.50"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
@@ -404,7 +394,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-bintray-plugin": {
-            "locked": "7.4.3",
+            "locked": "7.5.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-core": {
@@ -450,7 +440,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-bintray-plugin": {
-            "locked": "7.4.3",
+            "locked": "7.5.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-core": {
@@ -512,7 +502,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-bintray-plugin": {
-            "locked": "7.4.3",
+            "locked": "7.5.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-core": {
@@ -574,7 +564,7 @@
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-bintray-plugin": {
-            "locked": "7.4.3",
+            "locked": "7.5.0",
             "requested": "latest.release"
         },
         "com.netflix.nebula:nebula-core": {
@@ -610,7 +600,7 @@
             "requested": "1.3.50"
         },
         "org.jetbrains.kotlin:kotlin-stdlib-jdk8": {
-            "locked": "1.3.50",
+            "locked": "1.3.60",
             "requested": "1.3.50"
         },
         "org.jfrog.buildinfo:build-info-extractor-gradle": {
