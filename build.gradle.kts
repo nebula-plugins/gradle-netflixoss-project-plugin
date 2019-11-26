@@ -22,7 +22,6 @@ plugins {
     id("nebula.plugin-plugin") version "13.2.0"
 }
 
-
 description = "Template for NetflixOSS projects"
 
 

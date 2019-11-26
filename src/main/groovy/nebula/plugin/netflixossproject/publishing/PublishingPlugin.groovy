@@ -72,7 +72,11 @@ class PublishingPlugin implements Plugin<Project> {
 
         BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
         bintray.with {
-            if (shouldUseCandidateRepo(project)) {
+            if(shouldUseSnapshotRepo(project)) {
+                repo.set('oss-snapshot-local')
+                apiUrl.set('https://oss.jfrog.org/artifactory')
+                syncToMavenCentral.set(false)
+            } else if (shouldUseCandidateRepo(project)) {
                 repo.set('oss-candidate')
                 syncToMavenCentral.set(false)
             } else {
@@ -111,6 +115,10 @@ class PublishingPlugin implements Plugin<Project> {
         def m = origin =~ GIT_PATTERN
         String path = m[0][7] - '.git'
         path.tokenize('/').last()
+    }
+
+    static Boolean shouldUseSnapshotRepo(Project project) {
+        return project.gradle.startParameter.taskNames.contains('snapshot') || project.gradle.startParameter.taskNames.contains(':snapshot')
     }
 
     static Boolean shouldUseCandidateRepo(Project project) {

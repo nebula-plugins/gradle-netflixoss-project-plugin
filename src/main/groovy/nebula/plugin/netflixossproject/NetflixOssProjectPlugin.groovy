@@ -121,14 +121,5 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
         project.plugins.apply EclipsePlugin
 
 
-        if (project.gradle.startParameter.taskNames.any { it.endsWith('snapshot') }) {
-            project.tasks.withType(PublishToMavenRepository).configureEach(new Action<PublishToMavenRepository>() {
-                @Override
-                void execute(PublishToMavenRepository publishToMavenRepository) {
-                    publishToMavenRepository.enabled = false
-                }
-            })
-        }
-
     }
 }
