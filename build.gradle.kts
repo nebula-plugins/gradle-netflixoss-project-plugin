@@ -19,7 +19,7 @@ plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
     `groovy`
-    id("nebula.plugin-plugin") version "14.0.2"
+    id("nebula.plugin-plugin") version "14.0.3"
 }
 
 description = "Template for NetflixOSS projects"
