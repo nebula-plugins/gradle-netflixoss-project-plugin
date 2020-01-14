@@ -70,7 +70,7 @@ class PublishingPlugin implements Plugin<Project> {
         project.tasks.withType(ArtifactoryTask, runOnlyForSnapshots)
         project.tasks.withType(DeployTask, runOnlyForSnapshots)
 
-        BintrayExtension bintray = project.extensions.getByType(BintrayExtension)
+        BintrayExtension bintray = project.rootProject == project ? project.extensions.getByType(BintrayExtension) : project.rootProject.extensions.getByType(BintrayExtension)
         bintray.with {
             if(shouldUseSnapshotRepo(project)) {
                 repo.set('oss-snapshot-local')
