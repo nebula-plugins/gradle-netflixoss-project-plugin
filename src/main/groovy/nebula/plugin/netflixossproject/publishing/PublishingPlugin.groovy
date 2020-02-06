@@ -23,10 +23,12 @@ import nebula.plugin.bintray.NebulaBintrayVersionTask
 import nebula.plugin.bintray.NebulaGpgSignVersionTask
 import nebula.plugin.bintray.NebulaMavenCentralVersionSyncTask
 import nebula.plugin.info.scm.ScmInfoExtension
+import org.gradle.api.Action
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
 import org.gradle.api.execution.TaskExecutionGraph
+import org.gradle.api.publish.tasks.GenerateModuleMetadata
 import org.gradle.api.tasks.Upload
 import org.jfrog.gradle.plugin.artifactory.task.ArtifactoryTask
 import org.jfrog.gradle.plugin.artifactory.task.DeployTask
@@ -98,6 +100,10 @@ class PublishingPlugin implements Plugin<Project> {
             bintray.issueTrackerUrl.set( "${url}/issues")
             bintray.vcsUrl.set("${url}.git")
         }
+
+        project.plugins.withId('com.github.johnrengelman.shadow') {
+            disableGradleModuleMetadataTask(project)
+        }
     }
 
     static GIT_PATTERN = /((git|ssh|https?):(\/\/))?(\w+@)?([\w\.]+)([\:\\/])([\w\.@\:\/\-~]+)(\/)?/
@@ -132,5 +138,14 @@ class PublishingPlugin implements Plugin<Project> {
         }
 
         return true
+    }
+
+    private void disableGradleModuleMetadataTask(Project project) {
+        project.tasks.withType(GenerateModuleMetadata).configureEach(new Action<GenerateModuleMetadata>() {
+            @Override
+            void execute(GenerateModuleMetadata generateModuleMetadataTask) {
+                generateModuleMetadataTask.enabled = false
+            }
+        })
     }
 }
