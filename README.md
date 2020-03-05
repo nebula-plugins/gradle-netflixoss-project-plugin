@@ -85,13 +85,13 @@ By default the license check is on. To turn it off:
 
 see [nebula-release-plugin](https://github.com/nebula-plugins/nebula-release-plugin)
 
-We disable the devSnapshot task since we release to oss.jfrog.org with maven style -SNAPSHOT versions.
+NOTE: We disable the `devSnapshot` and  `immutableSnapshot` tasks since we release to oss.jfrog.org with maven style -SNAPSHOT versions and those tasks are using incompatible version patterns.
 
 ### Release Tasks
 
-* snapshot - release a snapshot version, does not create a tag, the version will be `major.minor.patch-SNAPSHOT`
-* candidate - release a candidate version, creates a tag, the version will be `major.minor.patch-rc.#`
-* final - release a final version, creates a tag, the version will be `major.minor.patch`
+* `snapshot` - release a snapshot version, does not create a tag, the version will be `major.minor.patch-SNAPSHOT`
+* `candidate` - release a candidate version, creates a tag, the version will be `major.minor.patch-rc.#`
+* `final` - release a final version, creates a tag, the version will be `major.minor.patch`
 
 ### Properties to change the version
 
