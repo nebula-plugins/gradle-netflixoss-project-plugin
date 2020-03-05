@@ -68,8 +68,8 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
 
         if (type.isRootProject) {
             project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
-                if (graph.hasTask(':devSnapshot')) {
-                    throw new GradleException('You cannot use the devSnapshot task from the release plugin. Please use the snapshot task.')
+                if (graph.hasTask(':devSnapshot') || graph.hasTask(':immutableSnapshot')) {
+                    throw new GradleException('You cannot use the devSnapshot or immutableSnapshot task from the release plugin. Please use the snapshot task.')
                 }
 
             }

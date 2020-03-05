@@ -30,8 +30,6 @@ import org.gradle.api.Task
 import org.gradle.api.execution.TaskExecutionGraph
 import org.gradle.api.publish.tasks.GenerateModuleMetadata
 import org.gradle.api.tasks.Upload
-import org.jfrog.gradle.plugin.artifactory.task.ArtifactoryTask
-import org.jfrog.gradle.plugin.artifactory.task.DeployTask
 
 class PublishingPlugin implements Plugin<Project> {
 
@@ -62,15 +60,6 @@ class PublishingPlugin implements Plugin<Project> {
         project.tasks.withType(NebulaBintrayVersionTask, disable)
         project.tasks.withType(NebulaBintrayVersionTask, runOnlyForCandidateAndFinal)
         project.tasks.withType(Upload, disable)
-        def runOnlyForSnapshots = { Task task ->
-            project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
-                task.onlyIf {
-                    graph.hasTask(':snapshot') || graph.hasTask(':devSnapshot')
-                }
-            }
-        }
-        project.tasks.withType(ArtifactoryTask, runOnlyForSnapshots)
-        project.tasks.withType(DeployTask, runOnlyForSnapshots)
 
         BintrayExtension bintray = project.rootProject == project ? project.extensions.getByType(BintrayExtension) : project.rootProject.extensions.getByType(BintrayExtension)
         bintray.with {
