@@ -18,7 +18,9 @@ package nebula.plugin.netflixossproject
 import nebula.plugin.responsible.NebulaIntegTestPlugin
 import nebula.test.IntegrationSpec
 import org.ajoberstar.grgit.Grgit
+import org.gradle.api.GradleException
 import org.gradle.api.plugins.JavaPlugin
+import spock.lang.Unroll
 
 class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
     Grgit grgit;
@@ -50,6 +52,18 @@ class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
 
         then:
         noExceptionThrown()
+    }
+
+    @Unroll
+    def 'build should break when #task from release plugin is used'() {
+        when:
+        def result = runTasksWithFailure(task)
+
+        then:
+        result.standardError.contains('You cannot use the devSnapshot or immutableSnapshot task from the release plugin. Please use the snapshot task')
+
+        where:
+        task << ['devSnapshot', 'immutableSnapshot']
     }
 
     def 'verify manifest created' () {
