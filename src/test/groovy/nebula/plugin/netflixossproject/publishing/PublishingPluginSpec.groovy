@@ -55,6 +55,7 @@ class PublishingPluginSpec extends ProjectSpec {
     'git@github.com:reactivex/rxjava-core.git'     || 'rxjava-core'
     'https://github.com/reactivex/rxjava-core'     || 'rxjava-core'
     'https://github.com/reactivex/rxjava-core.git' || 'rxjava-core'
+    'https://github.com/reactivex/RxJava-Core.git' || 'rxjava-core'
 
   }
 }

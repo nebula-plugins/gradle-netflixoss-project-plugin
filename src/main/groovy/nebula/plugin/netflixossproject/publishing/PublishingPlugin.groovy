@@ -83,7 +83,7 @@ class PublishingPlugin implements Plugin<Project> {
 
         if (scmInfo) {
             // Assuming scmInfo.origin is something like git@github.com:netflix/project.git
-            bintray.pkgName.set(calculateRepoFromOrigin(scmInfo.origin) ?: project.rootProject.name)
+            bintray.pkgName.set(calculateRepoFromOrigin(scmInfo.origin) ?: project.rootProject.name.toLowerCase())
             def url = calculateUrlFromOrigin(scmInfo.origin)
             bintray.websiteUrl.set(url)
             bintray.issueTrackerUrl.set( "${url}/issues")
@@ -109,7 +109,7 @@ class PublishingPlugin implements Plugin<Project> {
     static String calculateRepoFromOrigin(String origin) {
         def m = origin =~ GIT_PATTERN
         String path = m[0][7] - '.git'
-        path.tokenize('/').last()
+        path.tokenize('/').last().toLowerCase()
     }
 
     static Boolean shouldUseSnapshotRepo(Project project) {
