@@ -47,7 +47,7 @@ dependencies {
     implementation("com.netflix.nebula:nebula-publishing-plugin:latest.release")
     implementation("com.netflix.nebula:nebula-release-plugin:latest.release")
     implementation("com.netflix.nebula:gradle-java-cross-compile-plugin:latest.release")
-    implementation("gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.14.0")
+    implementation("gradle.plugin.nl.javadude.gradle.plugins:license-gradle-plugin:0.15.0")
     testImplementation("org.ajoberstar.grgit:grgit-core:3.1.1") {
         exclude(group = "org.codehaus.groovy", module = "groovy")
     }

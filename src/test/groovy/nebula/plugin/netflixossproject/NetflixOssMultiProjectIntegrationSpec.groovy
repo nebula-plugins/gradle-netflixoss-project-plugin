@@ -65,7 +65,7 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
 
     def 'run build'() {
         when:
-        runTasksSuccessfully('build')
+        def x = runTasks('build', '--warning-mode=all')
 
         then:
         noExceptionThrown()
