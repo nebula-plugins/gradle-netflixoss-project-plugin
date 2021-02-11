@@ -22,13 +22,13 @@ import nebula.plugin.dependencylock.DependencyLockPlugin
 import nebula.plugin.info.InfoPlugin
 import nebula.plugin.netflixossproject.license.OssLicensePlugin
 import nebula.plugin.netflixossproject.publishing.PublishingPlugin
+import nebula.plugin.publishing.NebulaOssPublishingPlugin
 import nebula.plugin.publishing.maven.MavenPublishPlugin
 import nebula.plugin.publishing.publications.JavadocJarPlugin
 import nebula.plugin.publishing.publications.SourceJarPlugin
 import nebula.plugin.release.NetflixOssStrategies
 import nebula.plugin.release.ReleasePlugin
 import nebula.plugin.release.git.base.ReleasePluginExtension
-import org.gradle.api.Action
 import org.gradle.api.GradleException
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
@@ -37,7 +37,6 @@ import org.gradle.api.execution.TaskExecutionGraph
 import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaPluginConvention
-import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 import org.gradle.plugins.ide.eclipse.EclipsePlugin
 import org.gradle.plugins.ide.idea.IdeaPlugin
 
