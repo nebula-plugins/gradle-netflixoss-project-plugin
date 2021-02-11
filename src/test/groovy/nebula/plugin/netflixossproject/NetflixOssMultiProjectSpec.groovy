@@ -19,6 +19,7 @@ import nebula.plugin.contacts.ContactsPlugin
 import nebula.plugin.dependencylock.DependencyLockPlugin
 import nebula.plugin.info.InfoPlugin
 import nebula.plugin.netflixossproject.publishing.PublishingPlugin
+import nebula.plugin.publishing.NebulaOssPublishingPlugin
 import nebula.plugin.publishing.maven.MavenPublishPlugin
 import nebula.plugin.publishing.publications.JavadocJarPlugin
 import nebula.plugin.publishing.publications.SourceJarPlugin
@@ -48,7 +49,7 @@ class NetflixOssMultiProjectSpec extends ProjectSpec {
 
         where:
         plugin | _
-        PublishingPlugin | _
+        NebulaOssPublishingPlugin | _
         InfoPlugin | _
         IdeaPlugin | _
         EclipsePlugin | _
@@ -62,7 +63,7 @@ class NetflixOssMultiProjectSpec extends ProjectSpec {
 
         where:
         plugin | _
-        PublishingPlugin | _
+        NebulaOssPublishingPlugin | _
         InfoPlugin | _
         IdeaPlugin | _
         EclipsePlugin | _

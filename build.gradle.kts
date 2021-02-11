@@ -37,10 +37,9 @@ contacts {
 }
 
 dependencies {
+    implementation("com.netflix.nebula:nebula-oss-publishing-plugin:latest.release")
     implementation("com.netflix.nebula:gradle-contacts-plugin:latest.release")
     implementation("com.netflix.nebula:gradle-dependency-lock-plugin:latest.release")
-    implementation("com.netflix.nebula:nebula-bintray-plugin:latest.release")
-    implementation("com.netflix.nebula:gradle-info-plugin:latest.release")
     implementation("com.netflix.nebula:gradle-info-plugin:latest.release")
     implementation("com.netflix.nebula:nebula-core:latest.release")
     implementation("com.netflix.nebula:nebula-project-plugin:latest.release")
