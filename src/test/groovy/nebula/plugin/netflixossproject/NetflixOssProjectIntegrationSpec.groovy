@@ -35,7 +35,7 @@ class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
             ${applyPlugin(NetflixOssProjectPlugin)}
             ${applyPlugin(JavaPlugin)}
             repositories {
-                jcenter()
+                mavenCentral()
             }
             dependencies {
                 testImplementation 'junit:junit:4.12'

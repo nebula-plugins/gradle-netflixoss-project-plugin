@@ -28,7 +28,7 @@ class NetflixOssProjectPublishingIntegrationSpec extends GitVersioningIntegratio
             ${applyPlugin(NetflixOssProjectPlugin)}
             ${applyPlugin(JavaPlugin)}
             repositories {
-                jcenter()
+                mavenCentral()
             }
             dependencies {
                 testImplementation 'junit:junit:4.12'

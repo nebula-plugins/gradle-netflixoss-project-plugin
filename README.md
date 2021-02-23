@@ -47,7 +47,7 @@ If using gradle 2.1 or newer:
 -or-
 
     buildscript {
-      repositories { jcenter() }
+      repositories { mavenCentral() }
       dependencies { classpath 'com.netflix.nebula:gradle-netflixoss-project-plugin:5.1.1' }
     }
 
