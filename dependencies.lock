@@ -7,13 +7,10 @@
             "locked": "11.1.2"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "9.2.2"
+            "locked": "9.3.0"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
             "locked": "4.3.0"
-        },
-        "com.netflix.nebula:nebula-core": {
-            "locked": "4.0.1"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
             "locked": "0.3.0"
@@ -61,13 +58,10 @@
             "locked": "11.1.2"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "9.2.2"
+            "locked": "9.3.0"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
             "locked": "4.3.0"
-        },
-        "com.netflix.nebula:nebula-core": {
-            "locked": "4.0.1"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
             "locked": "0.3.0"
@@ -98,13 +92,10 @@
             "locked": "11.1.2"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "9.2.2"
+            "locked": "9.3.0"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
             "locked": "4.3.0"
-        },
-        "com.netflix.nebula:nebula-core": {
-            "locked": "4.0.1"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
             "locked": "0.3.0"
@@ -147,13 +138,10 @@
             "locked": "11.1.2"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "9.2.2"
+            "locked": "9.3.0"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
             "locked": "4.3.0"
-        },
-        "com.netflix.nebula:nebula-core": {
-            "locked": "4.0.1"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
             "locked": "0.3.0"
@@ -219,13 +207,10 @@
             "locked": "11.1.2"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "9.2.2"
+            "locked": "9.3.0"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
             "locked": "4.3.0"
-        },
-        "com.netflix.nebula:nebula-core": {
-            "locked": "4.0.1"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
             "locked": "0.3.0"
@@ -251,13 +236,10 @@
             "locked": "11.1.2"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "9.2.2"
+            "locked": "9.3.0"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
             "locked": "4.3.0"
-        },
-        "com.netflix.nebula:nebula-core": {
-            "locked": "4.0.1"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
             "locked": "0.3.0"
@@ -295,13 +277,10 @@
             "locked": "11.1.2"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "9.2.2"
+            "locked": "9.3.0"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
             "locked": "4.3.0"
-        },
-        "com.netflix.nebula:nebula-core": {
-            "locked": "4.0.1"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
             "locked": "0.3.0"
@@ -339,13 +318,10 @@
             "locked": "11.1.2"
         },
         "com.netflix.nebula:gradle-info-plugin": {
-            "locked": "9.2.2"
+            "locked": "9.3.0"
         },
         "com.netflix.nebula:gradle-java-cross-compile-plugin": {
             "locked": "4.3.0"
-        },
-        "com.netflix.nebula:nebula-core": {
-            "locked": "4.0.1"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
             "locked": "0.3.0"
