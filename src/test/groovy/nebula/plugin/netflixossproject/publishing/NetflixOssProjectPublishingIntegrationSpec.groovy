@@ -69,8 +69,8 @@ class NetflixOssProjectPublishingIntegrationSpec extends GitVersioningIntegratio
         result.standardOutput.contains(':publishNebulaPublicationToNetflixOSSRepository SKIPPED')
         result.standardOutput.contains(':initializeSonatypeStagingRepository SKIPPED')
         result.standardOutput.contains(':publishNebulaPublicationToSonatypeRepository SKIPPED')
-        result.standardOutput.contains(':closeRepository SKIPPED')
-        result.standardOutput.contains(':releaseRepository SKIPPED')
-        result.standardOutput.contains(':closeAndReleaseRepository SKIPPED')
+        result.standardOutput.contains(':closeSonatypeStagingRepository SKIPPED')
+        result.standardOutput.contains(':releaseSonatypeStagingRepository SKIPPED')
+        result.standardOutput.contains(':closeAndReleaseSonatypeStagingRepository SKIPPED')
     }
 }
