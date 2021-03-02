@@ -13,7 +13,7 @@
             "locked": "4.3.0"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
-            "locked": "0.3.0"
+            "locked": "1.0.0"
         },
         "com.netflix.nebula:nebula-project-plugin": {
             "locked": "8.0.0"
@@ -64,7 +64,7 @@
             "locked": "4.3.0"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
-            "locked": "0.3.0"
+            "locked": "1.0.0"
         },
         "com.netflix.nebula:nebula-project-plugin": {
             "locked": "8.0.0"
@@ -98,7 +98,7 @@
             "locked": "4.3.0"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
-            "locked": "0.3.0"
+            "locked": "1.0.0"
         },
         "com.netflix.nebula:nebula-project-plugin": {
             "locked": "8.0.0"
@@ -144,7 +144,7 @@
             "locked": "4.3.0"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
-            "locked": "0.3.0"
+            "locked": "1.0.0"
         },
         "com.netflix.nebula:nebula-project-plugin": {
             "locked": "8.0.0"
@@ -213,7 +213,7 @@
             "locked": "4.3.0"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
-            "locked": "0.3.0"
+            "locked": "1.0.0"
         },
         "com.netflix.nebula:nebula-project-plugin": {
             "locked": "8.0.0"
@@ -242,7 +242,7 @@
             "locked": "4.3.0"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
-            "locked": "0.3.0"
+            "locked": "1.0.0"
         },
         "com.netflix.nebula:nebula-project-plugin": {
             "locked": "8.0.0"
@@ -283,7 +283,7 @@
             "locked": "4.3.0"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
-            "locked": "0.3.0"
+            "locked": "1.0.0"
         },
         "com.netflix.nebula:nebula-project-plugin": {
             "locked": "8.0.0"
@@ -324,7 +324,7 @@
             "locked": "4.3.0"
         },
         "com.netflix.nebula:nebula-oss-publishing-plugin": {
-            "locked": "0.3.0"
+            "locked": "1.0.0"
         },
         "com.netflix.nebula:nebula-project-plugin": {
             "locked": "8.0.0"
