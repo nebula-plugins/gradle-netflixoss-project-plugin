@@ -88,13 +88,12 @@ class NetflixOssMultiProjectPublishingIntegrationSpec extends GitVersioningInteg
         def result = runTasksSuccessfully('final', '-PnetflixOss.username=user',  '-PnetflixOss.password=password', '-Psonatype.username=user',  '-Psonatype.password=password', '-Psonatype.signingKey=user',  '-Psonatype.signingPassword=password','--dry-run')
 
         then:
+        result.standardOutput.contains(':initializeSonatypeStagingRepository SKIPPED')
         result.standardOutput.contains(':sub1:signNebulaPublication SKIPPED')
         result.standardOutput.contains(':sub1:publishNebulaPublicationToNetflixOSSRepository SKIPPED')
-        result.standardOutput.contains(':sub1:initializeSonatypeStagingRepository SKIPPED')
         result.standardOutput.contains(':sub1:publishNebulaPublicationToSonatypeRepository SKIPPED')
         result.standardOutput.contains(':sub2:signNebulaPublication SKIPPED')
         result.standardOutput.contains(':sub2:publishNebulaPublicationToNetflixOSSRepository SKIPPED')
-        result.standardOutput.contains(':sub2:initializeSonatypeStagingRepository SKIPPED')
         result.standardOutput.contains(':sub2:publishNebulaPublicationToSonatypeRepository SKIPPED')
         !result.standardOutput.contains(':sub1:closeSonatypeStagingRepository SKIPPED')
         !result.standardOutput.contains(':sub1:releaseSonatypeStagingRepository SKIPPED')
