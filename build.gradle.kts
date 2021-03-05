@@ -25,15 +25,11 @@ plugins {
 description = "Template for NetflixOSS projects"
 
 
-val rspieldenner = Contact("rob.spieldenner@gmail.com")
-rspieldenner.moniker = "Rob Spieldenner"
-rspieldenner.github = "rspieldenner"
-val rpalcolea = Contact("roberto@perezalcolea.info")
-rpalcolea.moniker = "Roberto Perez Alcolea"
-rpalcolea.github = "rpalcolea"
+val nebulaPlugins = Contact("nebula-plugins-oss@netflix.com")
+nebulaPlugins.moniker = "Nebula Plugins Maintainers"
+nebulaPlugins.github = "nebula-plugins"
 contacts {
-    people.set("rob.spieldenner@gmail.com", rspieldenner)
-    people.set("roberto@perezalcolea.info", rpalcolea)
+    people.set("nebula-plugins-oss@netflix.com", nebulaPlugins)
 }
 
 dependencies {
