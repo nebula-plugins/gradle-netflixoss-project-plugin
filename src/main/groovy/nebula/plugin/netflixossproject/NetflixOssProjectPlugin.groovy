@@ -37,6 +37,8 @@ import org.gradle.api.execution.TaskExecutionGraph
 import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.plugins.JavaPluginConvention
+import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
+import org.gradle.api.tasks.TaskProvider
 import org.gradle.plugins.ide.eclipse.EclipsePlugin
 import org.gradle.plugins.ide.idea.IdeaPlugin
 
@@ -119,6 +121,34 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
         project.plugins.apply IdeaPlugin
         project.plugins.apply EclipsePlugin
 
+
+        project.afterEvaluate {
+            project.plugins.withId('com.gradle.plugin-publish') {
+                //Disable marker tasks
+                project.tasks.findAll {
+                    (it.name.contains("Marker") && it.name.contains('Maven')) ||
+                            it.name.contains("PluginMarkerMavenPublicationToNetflixOSSRepository") ||
+                            it.name.contains("PluginMarkerMavenPublicationToSonatypeRepository") ||
+                            it.name.contains("publishPluginMavenPublicationToNetflixOSSRepository") ||
+                            it.name.contains("publishPluginMavenPublicationToSonatypeRepository")
+                }.each {
+                    it.enabled = false
+                }
+
+                TaskProvider validatePluginsTask = project.tasks.named('validatePlugins')
+                TaskProvider publishPluginsTask = project.tasks.named('publishPlugins')
+                project.plugins.withId('nebula.release') {
+                    project.tasks.withType(PublishToMavenRepository).configureEach {
+                        def releasetask = project.rootProject.tasks.findByName('release')
+                        if (releasetask) {
+                            it.mustRunAfter(releasetask)
+                            it.dependsOn(validatePluginsTask)
+                            it.dependsOn(publishPluginsTask)
+                        }
+                    }
+                }
+            }
+        }
 
     }
 }
