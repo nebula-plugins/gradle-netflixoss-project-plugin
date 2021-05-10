@@ -25,7 +25,7 @@ com.netflix.nebula:gradle-java-cross-compile-plugin:4.4.0
 com.netflix.nebula:gradle-scm-plugin:5.1.0
 com.netflix.nebula:nebula-dependencies-comparison:0.1.8
 com.netflix.nebula:nebula-gradle-interop:1.0.11
-com.netflix.nebula:nebula-oss-publishing-plugin:1.2.0
+com.netflix.nebula:nebula-oss-publishing-plugin:1.2.1
 com.netflix.nebula:nebula-project-plugin:8.0.0
 com.netflix.nebula:nebula-publishing-plugin:17.3.2
 com.netflix.nebula:nebula-release-plugin:15.3.1
