@@ -19,7 +19,7 @@ plugins {
     `java-gradle-plugin`
     `kotlin-dsl`
     `groovy`
-    id("nebula.plugin-plugin") version "15.2.1"
+    id("nebula.plugin-plugin") version "15.4.1"
 }
 
 description = "Template for NetflixOSS projects"
@@ -41,7 +41,7 @@ dependencies {
     implementation("com.netflix.nebula:nebula-publishing-plugin:latest.release")
     implementation("com.netflix.nebula:nebula-release-plugin:latest.release")
     implementation("com.netflix.nebula:gradle-java-cross-compile-plugin:latest.release")
-    implementation("gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:0.15.0")
+    implementation("gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:0.16.1")
     testImplementation("org.ajoberstar.grgit:grgit-core:3.1.1") {
         exclude(group = "org.codehaus.groovy", module = "groovy")
     }
