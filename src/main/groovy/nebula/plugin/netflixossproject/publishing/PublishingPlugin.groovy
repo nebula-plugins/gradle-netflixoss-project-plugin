@@ -15,6 +15,7 @@
  */
 package nebula.plugin.netflixossproject.publishing
 
+import nebula.plugin.netflixossproject.FeatureFlags
 import nebula.plugin.publishing.NebulaOssPublishingPlugin
 import org.gradle.api.Action
 import org.gradle.api.Plugin
@@ -38,6 +39,10 @@ class PublishingPlugin implements Plugin<Project> {
         }
 
         project.plugins.withId('com.github.johnrengelman.shadow') {
+            boolean gradleModuleMetadataPublishingForShadowPluginEnabled = FeatureFlags.isFeatureEnabled(project, FeatureFlags.GRADLE_METADATA_SHADOW_PUBLISHING_SUPPORT, false)
+            if(gradleModuleMetadataPublishingForShadowPluginEnabled) {
+                return
+            }
             disableGradleModuleMetadataTask(project)
         }
     }
