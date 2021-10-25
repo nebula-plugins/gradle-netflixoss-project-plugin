@@ -92,7 +92,8 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
         runTasksSuccessfully('build')
 
         then:
-        new File(projectDir, 'build/netflixoss/netflixoss.txt').text.contains(result)
+        new File(projectDir, 'build/netflixoss/netflixoss.txt').text.contains('test.nebula:sub1:0.1.0-SNAPSHOT')
+        new File(projectDir, 'build/netflixoss/netflixoss.txt').text.contains('test.nebula:sub2:0.1.0-SNAPSHOT')
     }
 
     def 'release.travisci flag does not break builds when set to true'() {
