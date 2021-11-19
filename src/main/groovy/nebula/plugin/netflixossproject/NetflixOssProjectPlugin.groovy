@@ -36,7 +36,7 @@ import org.gradle.api.Project
 import org.gradle.api.execution.TaskExecutionGraph
 import org.gradle.api.plugins.JavaBasePlugin
 import org.gradle.api.plugins.JavaPlugin
-import org.gradle.api.plugins.JavaPluginConvention
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.plugins.ide.eclipse.EclipsePlugin
@@ -103,8 +103,8 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             }
 
             project.plugins.withType(JavaPlugin) { JavaPlugin javaPlugin ->
-                JavaPluginConvention convention = project.convention.getPlugin(JavaPluginConvention)
-                convention.sourceCompatibility = JavaVersion.VERSION_1_8
+                JavaPluginExtension javaPluginExtension = project.extensions.getByType(JavaPluginExtension)
+                javaPluginExtension.sourceCompatibility = JavaVersion.VERSION_1_8
             }
         }
 
