@@ -105,6 +105,12 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             project.plugins.withType(JavaPlugin) { JavaPlugin javaPlugin ->
                 JavaPluginExtension javaPluginExtension = project.extensions.getByType(JavaPluginExtension)
                 javaPluginExtension.sourceCompatibility = JavaVersion.VERSION_1_8
+                //if users provided their own explicit toolchain we remove the older incompatible property
+                project.afterEvaluate {
+                    if (javaPluginExtension.toolchain.languageVersion.isPresent()) {
+                        javaPluginExtension.sourceCompatibility = null
+                    }
+                }
             }
         }
 
