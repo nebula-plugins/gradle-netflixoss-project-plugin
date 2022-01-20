@@ -20,6 +20,7 @@ import nebula.test.IntegrationSpec
 import org.ajoberstar.grgit.Grgit
 import org.gradle.api.GradleException
 import org.gradle.api.plugins.JavaPlugin
+import spock.lang.IgnoreIf
 import spock.lang.Unroll
 
 class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
@@ -102,6 +103,23 @@ class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
         new File(projectDir, 'src/main/java/test/nebula/netflixoss/HelloWorld.java').text.contains(headerContains)
         new File(projectDir, 'src/test/java/test/nebula/netflixoss/HelloWorldTest.java').text.contains(headerContains)
         new File(projectDir, 'src/integTest/java/test/nebula/netflixoss/HelloWorldTest.java').text.contains(headerContains)
+    }
+
+    @IgnoreIf({ !jvm.isJava11Compatible() })
+    def 'explicitly declared toolchains override plugin opinions'() {
+        given:
+        buildFile << """
+            java {
+                toolchain {
+                    languageVersion = JavaLanguageVersion.of(11)
+                }
+            }
+        """
+
+        writeHelloWorld('test.nebula.netflixoss')
+
+        expect:
+        runTasksSuccessfully('classes')
     }
 
     private void facetAdditionalSetup() {
