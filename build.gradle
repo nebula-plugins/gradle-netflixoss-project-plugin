@@ -1,7 +1,7 @@
 plugins {
     id 'java-gradle-plugin'
     id 'groovy'
-    id "nebula.plugin-plugin" version "16.3.0"
+    id "nebula.plugin-plugin" version "17.0.0"
 }
 
 description = "Template for NetflixOSS projects"
@@ -29,12 +29,16 @@ dependencies {
 }
 
 pluginBundle {
+    tags = ["nebula", "netflix", "oss"]
+}
+
+gradlePlugin {
     plugins {
         netflixoss {
             id = "nebula.netflixoss"
             displayName = "Netflix OSS Project Template"
             description = project.description
-            tags = ["nebula", "netflix", "oss"]
+            implementationClass = 'nebula.plugin.netflixossproject.NetflixOssProjectPlugin'
         }
     }
 }
