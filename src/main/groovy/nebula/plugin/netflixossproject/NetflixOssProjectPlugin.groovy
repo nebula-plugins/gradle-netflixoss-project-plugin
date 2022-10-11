@@ -143,7 +143,7 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
 
                 TaskProvider validatePluginsTask = project.tasks.named('validatePlugins')
                 TaskProvider publishPluginsTask = project.tasks.named('publishPlugins')
-                project.plugins.withId('nebula.release') {
+                project.plugins.withId('com.netflix.nebula.release') {
                     project.tasks.withType(PublishToMavenRepository).configureEach {
                         def releasetask = project.rootProject.tasks.findByName('release')
                         if (releasetask) {

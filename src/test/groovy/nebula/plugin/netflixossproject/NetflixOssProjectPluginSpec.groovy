@@ -33,7 +33,7 @@ import org.gradle.plugins.ide.idea.IdeaPlugin
 import spock.lang.Unroll
 
 class NetflixOssProjectPluginSpec extends PluginProjectSpec {
-    String pluginName = 'nebula.netflixoss'
+    String pluginName = 'com.netflix.nebula.netflixoss'
 
     def setup() {
         def git = Grgit.init(dir: projectDir)

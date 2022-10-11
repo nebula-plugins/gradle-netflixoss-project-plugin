@@ -105,23 +105,6 @@ class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
         new File(projectDir, 'src/integTest/java/test/nebula/netflixoss/HelloWorldTest.java').text.contains(headerContains)
     }
 
-    @IgnoreIf({ !jvm.isJava11Compatible() })
-    def 'explicitly declared toolchains override plugin opinions'() {
-        given:
-        buildFile << """
-            java {
-                toolchain {
-                    languageVersion = JavaLanguageVersion.of(11)
-                }
-            }
-        """
-
-        writeHelloWorld('test.nebula.netflixoss')
-
-        expect:
-        runTasksSuccessfully('classes')
-    }
-
     private void facetAdditionalSetup() {
         buildFile << """\
             ${applyPlugin(NebulaIntegTestPlugin)}
