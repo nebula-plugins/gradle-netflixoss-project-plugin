@@ -1,7 +1,7 @@
 plugins {
     id 'java-gradle-plugin'
     id 'groovy'
-    id "com.netflix.nebula.plugin-plugin" version "19.0.1"
+    id "com.netflix.nebula.plugin-plugin" version "19.0.2"
 }
 
 description = "Template for NetflixOSS projects"
@@ -23,7 +23,7 @@ dependencies {
     implementation("com.netflix.nebula:nebula-release-plugin:latest.release")
     implementation("com.netflix.nebula:gradle-java-cross-compile-plugin:latest.release")
     implementation("gradle.plugin.com.hierynomus.gradle.plugins:license-gradle-plugin:0.16.1")
-    testImplementation("org.ajoberstar.grgit:grgit-core:3.1.1") {
+    testImplementation("org.ajoberstar.grgit:grgit-core:4.1.1") {
         exclude group: 'org.codehaus.groovy', module: 'groovy'
     }
 }
@@ -36,6 +36,12 @@ gradlePlugin {
     plugins {
         netflixoss {
             id = "com.netflix.nebula.netflixoss"
+            displayName = "Netflix OSS Project Template"
+            description = project.description
+            implementationClass = 'nebula.plugin.netflixossproject.NetflixOssProjectPlugin'
+        }
+        legacyNetflixOss {
+            id = "nebula.netflixoss"
             displayName = "Netflix OSS Project Template"
             description = project.description
             implementationClass = 'nebula.plugin.netflixossproject.NetflixOssProjectPlugin'
