@@ -67,9 +67,12 @@ class NetflixOssProjectPluginSpec extends PluginProjectSpec {
         when:
         project.plugins.apply(JavaPlugin)
 
+
         then:
-        project.sourceCompatibility == JavaVersion.VERSION_1_8
-        project.targetCompatibility == JavaVersion.VERSION_1_8
+        project.afterEvaluate {
+            assert project.sourceCompatibility == JavaVersion.VERSION_1_8
+            assert project.targetCompatibility == JavaVersion.VERSION_1_8
+        }
     }
 
     def 'plugin allows changing java version'() {
