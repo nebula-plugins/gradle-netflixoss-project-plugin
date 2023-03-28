@@ -43,6 +43,7 @@ class NetflixOssProjectIntegrationSpec extends IntegrationSpec {
             }
             """.stripIndent()
 
+        grgit.remote.add(name: 'origin', url: 'git@github.com:nebula-plugins/gradle-netflixoss-project-plugin.git')
         grgit.add(patterns: ['build.gradle'])
         grgit.commit(message: 'Setup')
     }
