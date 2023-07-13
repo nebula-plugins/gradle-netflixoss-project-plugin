@@ -77,8 +77,8 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
 
             def collectNetflixOSS = project.tasks.create('collectNetflixOSS')
             collectNetflixOSS.doLast {
-                new File(project.buildDir, 'netflixoss').mkdirs()
-                def netflixoss = new File(project.buildDir, 'netflixoss/netflixoss.txt')
+                new File(project.layout.buildDirectory.getAsFile().get(), 'netflixoss').mkdirs()
+                def netflixoss = new File(project.layout.buildDirectory.getAsFile().get(), 'netflixoss/netflixoss.txt')
                 netflixoss.text = ''
                 project.allprojects.each { Project proj ->
                     if (new File(proj.buildDir, 'libs').exists()) {
