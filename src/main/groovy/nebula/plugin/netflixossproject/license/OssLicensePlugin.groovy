@@ -63,7 +63,7 @@ class OssLicensePlugin  implements Plugin<Project> {
     }
 
     File defineHeaderFile() {
-        File tmpDir = new File(project.getBuildDir(), 'license')
+        File tmpDir = new File(project.layout.buildDirectory.getAsFile().get(), 'license')
         tmpDir.mkdirs()
         new File(tmpDir, 'HEADER')
     }
