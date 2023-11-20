@@ -30,13 +30,16 @@ class PublishingPlugin implements Plugin<Project> {
         project.plugins.apply org.gradle.api.publish.plugins.PublishingPlugin
         project.plugins.apply NebulaOssPublishingPlugin
 
-        project.tasks.withType(PublishToMavenRepository).configureEach {
-            it.mustRunAfter(project.rootProject.tasks.named('release'))
+        project.afterEvaluate {
+            project.tasks.withType(PublishToMavenRepository).configureEach {
+                it.mustRunAfter(project.rootProject.tasks.named('release'))
+            }
+
+            project.rootProject.tasks.named('postRelease').configure {
+                it.dependsOn( project.tasks.withType(PublishToMavenRepository))
+            }
         }
 
-        project.rootProject.tasks.named('postRelease').configure {
-            it.dependsOn( project.tasks.withType(PublishToMavenRepository))
-        }
 
         project.plugins.withId('com.github.johnrengelman.shadow') {
             boolean gradleModuleMetadataPublishingForShadowPluginEnabled = FeatureFlags.isFeatureEnabled(project, FeatureFlags.GRADLE_METADATA_SHADOW_PUBLISHING_SUPPORT, false)
