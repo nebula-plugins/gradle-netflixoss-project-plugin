@@ -42,12 +42,19 @@ class PublishingPlugin implements Plugin<Project> {
 
 
         project.plugins.withId('com.github.johnrengelman.shadow') {
-            boolean gradleModuleMetadataPublishingForShadowPluginEnabled = FeatureFlags.isFeatureEnabled(project, FeatureFlags.GRADLE_METADATA_SHADOW_PUBLISHING_SUPPORT, false)
-            if(gradleModuleMetadataPublishingForShadowPluginEnabled) {
-                return
-            }
-            disableGradleModuleMetadataTask(project)
+           configureGradleModuleMetadata(project)
         }
+        project.plugins.withId('com.gradleup.shadow') {
+           configureGradleModuleMetadata(project)
+        }
+    }
+
+    private void configureGradleModuleMetadata(Project project) {
+        boolean gradleModuleMetadataPublishingForShadowPluginEnabled = FeatureFlags.isFeatureEnabled(project, FeatureFlags.GRADLE_METADATA_SHADOW_PUBLISHING_SUPPORT, false)
+        if(gradleModuleMetadataPublishingForShadowPluginEnabled) {
+            return
+        }
+        disableGradleModuleMetadataTask(project)
     }
 
     private void disableGradleModuleMetadataTask(Project project) {
