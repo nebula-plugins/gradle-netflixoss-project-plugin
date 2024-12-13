@@ -46,7 +46,7 @@ class OssLicensePlugin  implements Plugin<Project> {
         licenseExtension.header = header
 
         def writeTask = project.task('writeLicenseHeader') {
-            description 'Write license header for License tasks'
+            description = 'Write license header for License tasks'
             onlyIf {
                 def licenseTasks = project.gradle.taskGraph.getAllTasks().findAll { it instanceof License }
                 return licenseTasks.any { ((License) it).getHeader() == header }
