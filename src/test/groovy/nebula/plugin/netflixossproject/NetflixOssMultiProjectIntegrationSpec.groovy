@@ -112,8 +112,8 @@ class NetflixOssMultiProjectIntegrationSpec extends IntegrationSpec {
                 publishing {
                     repositories {
                         maven {
-                            name 'testRepo'
-                            url '../build/testrepo'
+                            name = 'testRepo'
+                            url = '../build/testrepo'
                         }
                     }
                 }
