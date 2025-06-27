@@ -70,8 +70,8 @@ class NetflixOssProjectPluginSpec extends PluginProjectSpec {
 
         then:
         project.afterEvaluate {
-            assert project.sourceCompatibility == JavaVersion.VERSION_1_8
-            assert project.targetCompatibility == JavaVersion.VERSION_1_8
+            assert project.java.sourceCompatibility == JavaVersion.VERSION_1_8
+            assert project.java.targetCompatibility == JavaVersion.VERSION_1_8
         }
     }
 
@@ -80,12 +80,12 @@ class NetflixOssProjectPluginSpec extends PluginProjectSpec {
         project.plugins.apply(JavaPlugin)
 
         when:
-        project.sourceCompatibility = '1.9'
-        project.targetCompatibility = '1.9'
+        project.java.sourceCompatibility = '1.9'
+        project.java.targetCompatibility = '1.9'
 
         then:
-        project.sourceCompatibility == JavaVersion.VERSION_1_9
-        project.targetCompatibility == JavaVersion.VERSION_1_9
+        project.java.sourceCompatibility == JavaVersion.VERSION_1_9
+        project.java.targetCompatibility == JavaVersion.VERSION_1_9
     }
 
     def 'plugin allows changing java version via sourceCompatibility only'() {
@@ -93,11 +93,11 @@ class NetflixOssProjectPluginSpec extends PluginProjectSpec {
         project.plugins.apply(JavaPlugin)
 
         when:
-        project.sourceCompatibility = '1.9'
+        project.java.sourceCompatibility = '1.9'
 
         then:
-        project.sourceCompatibility == JavaVersion.VERSION_1_9
-        project.targetCompatibility == JavaVersion.VERSION_1_9
+        project.java.sourceCompatibility == JavaVersion.VERSION_1_9
+        project.java.targetCompatibility == JavaVersion.VERSION_1_9
     }
 
     def 'plugin sets default group'() {

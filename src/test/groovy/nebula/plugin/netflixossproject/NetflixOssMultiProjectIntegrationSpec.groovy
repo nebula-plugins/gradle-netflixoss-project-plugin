@@ -15,6 +15,8 @@
  */
 package nebula.plugin.netflixossproject
 
+import groovy.ant.FileNameFinder
+import groovy.xml.XmlSlurper
 import nebula.test.IntegrationSpec
 import org.ajoberstar.grgit.Grgit
 import org.gradle.api.plugins.JavaPlugin
