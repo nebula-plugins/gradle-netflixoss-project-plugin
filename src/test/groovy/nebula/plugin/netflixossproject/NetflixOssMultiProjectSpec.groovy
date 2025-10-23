@@ -51,7 +51,6 @@ class NetflixOssMultiProjectSpec extends ProjectSpec {
         plugin | _
         NebulaOssPublishingPlugin | _
         InfoPlugin | _
-        IdeaPlugin | _
         EclipsePlugin | _
     }
 
@@ -65,7 +64,6 @@ class NetflixOssMultiProjectSpec extends ProjectSpec {
         plugin | _
         NebulaOssPublishingPlugin | _
         InfoPlugin | _
-        IdeaPlugin | _
         EclipsePlugin | _
         DependencyLockPlugin | _
         JavadocJarPlugin | _
