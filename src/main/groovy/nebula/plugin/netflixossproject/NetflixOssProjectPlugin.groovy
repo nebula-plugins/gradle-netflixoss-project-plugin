@@ -40,7 +40,6 @@ import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.maven.tasks.PublishToMavenRepository
 import org.gradle.api.tasks.TaskProvider
 import org.gradle.plugins.ide.eclipse.EclipsePlugin
-import org.gradle.plugins.ide.idea.IdeaPlugin
 
 class NetflixOssProjectPlugin implements Plugin<Project> {
     @Override
@@ -125,7 +124,6 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             }
         }
         project.plugins.apply InfoPlugin
-        project.plugins.apply IdeaPlugin
         project.plugins.apply EclipsePlugin
 
 

@@ -58,7 +58,6 @@ class NetflixOssProjectPluginSpec extends PluginProjectSpec {
         DependencyLockPlugin | _
         OssLicensePlugin | _
         EclipsePlugin | _
-        IdeaPlugin | _
     }
 
     def 'plugin sets default java version'() {
