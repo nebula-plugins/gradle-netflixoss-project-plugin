@@ -21,13 +21,14 @@ import nl.javadude.gradle.plugins.license.LicenseExtension
 import nl.javadude.gradle.plugins.license.LicensePlugin
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.file.RegularFile
+import org.gradle.api.provider.Provider
 
 /**
  * Leverage license plugin to show missing headers, and inject license into the POM
  */
 class OssLicensePlugin  implements Plugin<Project> {
     Project project
-    File header
 
     @Override
     void apply(Project project) {
@@ -42,35 +43,32 @@ class OssLicensePlugin  implements Plugin<Project> {
         licenseExtension.ext.year = Calendar.getInstance().get(Calendar.YEAR)
         licenseExtension.excludes(['**/*.txt', '**/*.conf', '**/*.json', '**/*.properties'])
 
-        header = defineHeaderFile()
-        licenseExtension.header = header
+        def headerFile = defineHeaderFile()
+        licenseExtension.header = headerFile.get().asFile
 
-        def writeTask = project.task('writeLicenseHeader') {
+        def writeTask = project.tasks.register('writeLicenseHeader') {
             description = 'Write license header for License tasks'
-            onlyIf {
-                def licenseTasks = project.gradle.taskGraph.getAllTasks().findAll { it instanceof License }
-                return licenseTasks.any { ((License) it).getHeader() == header }
-            }
+            def outputFile = headerFile
+            outputs.file(outputFile)
+
             doFirst {
-                header.parentFile.mkdirs()
-                copyHeaderFile()
+                outputFile.get().asFile.parentFile.mkdirs()
+                copyHeaderFile(outputFile.get().asFile)
             }
         }
-        project.tasks.withType(License) {
+        project.tasks.withType(License).configureEach {
             it.dependsOn(writeTask)
         }
 
     }
 
-    File defineHeaderFile() {
-        File tmpDir = new File(project.layout.buildDirectory.getAsFile().get(), 'license')
-        tmpDir.mkdirs()
-        new File(tmpDir, 'HEADER')
+    Provider<RegularFile> defineHeaderFile() {
+        project.layout.buildDirectory.file('license/HEADER')
     }
 
-    def copyHeaderFile() {
+    def copyHeaderFile(File headerFile) {
         this.class.classLoader.getResourceAsStream('netflixoss/HEADER').withStream { input ->
-            header.withOutputStream { out ->
+            headerFile.withOutputStream { out ->
                 out << input
             }
         }

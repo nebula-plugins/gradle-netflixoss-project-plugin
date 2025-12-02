@@ -67,27 +67,38 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
         }
 
         if (type.isRootProject) {
-            project.gradle.taskGraph.whenReady { TaskExecutionGraph graph ->
-                if (graph.hasTask(':devSnapshot') || graph.hasTask(':immutableSnapshot')) {
-                    throw new GradleException('You cannot use the devSnapshot or immutableSnapshot task from the release plugin. Please use the snapshot task.')
+            project.tasks.configureEach { task ->
+                if (task.name == 'devSnapshot' || task.name == 'immutableSnapshot') {
+                    task.doFirst {
+                        throw new GradleException('You cannot use the devSnapshot or immutableSnapshot task from the release plugin. Please use the snapshot task.')
+                    }
                 }
-
             }
 
-            def collectNetflixOSS = project.tasks.create('collectNetflixOSS')
-            collectNetflixOSS.doLast {
-                new File(project.layout.buildDirectory.getAsFile().get(), 'netflixoss').mkdirs()
-                def netflixoss = new File(project.layout.buildDirectory.getAsFile().get(), 'netflixoss/netflixoss.txt')
-                netflixoss.text = ''
-                project.allprojects.each { Project proj ->
-                    if (new File(proj.buildDir, 'libs').exists()) {
-                        netflixoss.append "${proj.group}:${proj.name}:${proj.version}\n"
+            def collectNetflixOSS = project.tasks.register('collectNetflixOSS') {
+                def outputDir = project.layout.buildDirectory.dir('netflixoss')
+                def outputFile = outputDir.map { it.file('netflixoss.txt') }
+
+                outputs.file(outputFile)
+
+                doLast {
+                    outputDir.get().asFile.mkdirs()
+                    def netflixoss = outputFile.get().asFile
+                    netflixoss.text = ''
+                    project.allprojects.each { Project proj ->
+                        if (proj.layout.buildDirectory.dir('libs').get().asFile.exists()) {
+                            netflixoss.append "${proj.group}:${proj.name}:${proj.version}\n"
+                        }
                     }
                 }
             }
             project.plugins.withType(JavaBasePlugin) {
-                collectNetflixOSS.mustRunAfter project.tasks.assemble
-                project.tasks.build.dependsOn collectNetflixOSS
+                collectNetflixOSS.configure {
+                    mustRunAfter(project.tasks.named('assemble'))
+                }
+                project.tasks.named('build').configure {
+                    dependsOn(collectNetflixOSS)
+                }
             }
 
         }
@@ -97,8 +108,12 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
             project.plugins.apply OssLicensePlugin
 
             project.plugins.withType(JavaBasePlugin) {
-                project.rootProject.tasks.collectNetflixOSS.mustRunAfter project.tasks.assemble
-                project.tasks.build.dependsOn project.rootProject.tasks.collectNetflixOSS
+                project.rootProject.tasks.named('collectNetflixOSS').configure {
+                    mustRunAfter(project.tasks.named('assemble'))
+                }
+                project.tasks.named('build').configure {
+                    dependsOn(project.rootProject.tasks.named('collectNetflixOSS'))
+                }
             }
 
             project.plugins.withType(JavaPlugin) { JavaPlugin javaPlugin ->
@@ -130,26 +145,24 @@ class NetflixOssProjectPlugin implements Plugin<Project> {
         project.afterEvaluate {
             project.plugins.withId('com.gradle.plugin-publish') {
                 //Disable marker tasks
-                project.tasks.findAll {
-                    (it.name.contains("Marker") && it.name.contains('Maven')) ||
-                            it.name.contains("PluginMarkerMavenPublicationToNetflixOSSRepository") ||
-                            it.name.contains("PluginMarkerMavenPublicationToSonatypeRepository") ||
-                            it.name.contains("publishPluginMavenPublicationToNetflixOSSRepository") ||
-                            it.name.contains("publishPluginMavenPublicationToSonatypeRepository")
-                }.each {
-                    it.enabled = false
+                project.tasks.configureEach { task ->
+                    if ((task.name.contains("Marker") && task.name.contains('Maven')) ||
+                            task.name.contains("PluginMarkerMavenPublicationToNetflixOSSRepository") ||
+                            task.name.contains("PluginMarkerMavenPublicationToSonatypeRepository") ||
+                            task.name.contains("publishPluginMavenPublicationToNetflixOSSRepository") ||
+                            task.name.contains("publishPluginMavenPublicationToSonatypeRepository")) {
+                        task.enabled = false
+                    }
                 }
 
                 TaskProvider validatePluginsTask = project.tasks.named('validatePlugins')
                 TaskProvider publishPluginsTask = project.tasks.named('publishPlugins')
                 project.plugins.withId('com.netflix.nebula.release') {
                     project.tasks.withType(PublishToMavenRepository).configureEach {
-                        def releasetask = project.rootProject.tasks.findByName('release')
-                        if (releasetask) {
-                            it.mustRunAfter(releasetask)
-                            it.dependsOn(validatePluginsTask)
-                            it.dependsOn(publishPluginsTask)
-                        }
+                        TaskProvider releaseTask = project.rootProject.tasks.named('release')
+                        it.mustRunAfter(releaseTask)
+                        it.dependsOn(validatePluginsTask)
+                        it.dependsOn(publishPluginsTask)
                     }
                 }
             }

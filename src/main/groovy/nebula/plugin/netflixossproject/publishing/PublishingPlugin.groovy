@@ -27,11 +27,11 @@ class PublishingPlugin implements Plugin<Project> {
         project.plugins.apply org.gradle.api.publish.plugins.PublishingPlugin
         project.plugins.apply NebulaOssPublishingPlugin
 
-        project.afterEvaluate {
-            project.tasks.withType(PublishToMavenRepository).configureEach {
-                it.mustRunAfter(project.rootProject.tasks.named('release'))
-            }
+        project.tasks.withType(PublishToMavenRepository).configureEach {
+            it.mustRunAfter(project.rootProject.tasks.named('release'))
+        }
 
+        project.plugins.withId('com.netflix.nebula.release') {
             project.rootProject.tasks.named('postRelease').configure {
                 it.dependsOn(project.tasks.withType(PublishToMavenRepository))
             }
